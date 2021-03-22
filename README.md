@@ -1,15 +1,16 @@
 **Tema**  
-Online second hand/trift store pod nazivom 2nd TIME!
+Online second hand/trift store pod nazivom 2nd TIME
 
-**Logo**
-![image](https://user-images.githubusercontent.com/72754512/111544652-164cfe00-8775-11eb-9a05-1e4efb7138ce.png)
+**Logo**  
+
+<img src="https://user-images.githubusercontent.com/72754512/111544652-164cfe00-8775-11eb-9a05-1e4efb7138ce.png" width="600" height="600">
 
 
 **Članovi tima**  
-Begović Amila  
-Kaleta Senija  
-Leka Elma  
-Panjeta Eldar  
+- [Begović Amila](https://github.com/abegovic6)  
+- [Kaleta Senija](https://github.com/Senija)  
+- [Leka Elma](https://github.com/eleka1)  
+- [Panjeta Eldar](https://github.com/epanjeta)  
 
 
 **Opis**  
@@ -23,34 +24,6 @@ Pri pokretanju softvera bit će omogućeno ulogovanje ili kreacija novog korisni
 	- Registrovani korisnik  
 	- Neregistrovani korisnik / gost  
 	- Vanjski sistem uplate  
+	- Dostavljač  
 
-**Administrator**  
-	- Administrator ima mogućnost da deaktivira korisničke račune koje su prijavili drugi korisnici  ili korisnike koji objavljuju neprimjeran sadržaj   
-	
-**Registrovani korisnik**  
-Registrovani korisnik će imati slijedeće dozvole:  
-	- Pregled i uređivanje vlastitog korisničkog računa  
-	- Objavljivanje vlastitih artikala uz detaljan opis, te prodaju istih  
-	- Imat će pristup cijelom pregledniku artikala  
-	- Imat će vlastitu korpu u koju će postavljati artikle koje namjerava kupiti i iz koje će se dalje vršiti kupovina  
-	- Bit će mu omogućeno ocjenjivanje i pisanje recenzija za druge korisnike  
-
-**Neregistrovani korisnik**  
-	- Neregistrovani korisnik će imati mogućnost pregleda svih artikala na stranici, ali za kupovinu i prodaju će morati napraviti vlastiti korisnički račun.  
-
-**Vanjski sistem uplate**  
-	- Aplikacija podržava vanjski princip uplate: PayPal, plaćanje karticom  
-
-**Nefunkcionalni zahtjevi**  
-	- Korisnik mora imati vise od 18 godina  
-	- Obavezni opisi odjece koja se unosi za prodaju   
-
-**Funkcionalni sistemi**  
-	- Kupovina se obavlja preko kartičnog plaćanja  
-	- Kada se obavi kupovina, vlasniku artikla se šalje mail sa informacijama kupca i on dalje šalje pošiljku   
-	- Postojat će i progress bar za kreaciju korisničkog računa i kreaciju artikla  
-
-**Dodatno:**  
-	- Upload slika za korisnički račun ili artikal  
-
-
+Dodatne funkcionalnosti programa i aktera se nalaze u specifikacijama projekta.
