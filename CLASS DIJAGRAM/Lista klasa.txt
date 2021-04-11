@@ -1,0 +1,25 @@
+Klase:
+
+- Product
+- Accessorie
+- Shoes
+- Clothing
+- RegisteredUser
+- Cart
+- UserProducts
+- Review
+- PaymentInformation
+- Administrator
+- Guest
+
+Enumeracije:
+
+- Condition
+- Color
+- Brand
+- Material
+- Gender
+- AccessorieCategory
+- ShoesCategory
+- ClothingCategory
+- ClothingSize
