@@ -10,7 +10,6 @@ Klase:
 - Review
 - PaymentInformation
 - Administrator
-- Guest
 
 Enumeracije:
 
