@@ -1,10 +1,10 @@
 Klase:
 
 - Product
-- Accessorie
+- Accessories
 - Shoes
 - Clothing
-- RegisteredUser
+- User
 - Cart
 - UserProducts
 - Review
@@ -18,7 +18,7 @@ Enumeracije:
 - Brand
 - Material
 - Gender
-- AccessorieCategory
+- AccessoriesCategory
 - ShoesCategory
 - ClothingCategory
 - ClothingSize
