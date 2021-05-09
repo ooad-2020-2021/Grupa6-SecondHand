@@ -16,7 +16,31 @@ namespace SecondHand.Models
         public Material Material { get; set; }
         public Condition Condition { get; set; }
         public Brand Brand { get; set; }
+        public Gender Gender { get; set; }
+        public User Owner { get; set; }
 
-        
+        protected Product(int iD, string naziv, 
+            string description, 
+            string image, 
+            double price, 
+            Color color, 
+            Material material, 
+            Condition condition, 
+            Brand brand, 
+            Gender gender, 
+            User owner)
+        {
+            ID = iD;
+            Naziv = naziv;
+            Description = description;
+            Image = image;
+            Price = price;
+            Color = color;
+            Material = material;
+            Condition = condition;
+            Brand = brand;
+            Gender = gender;
+            Owner = owner;
+        }
     }
 }

@@ -5,8 +5,27 @@ using System.Threading.Tasks;
 
 namespace SecondHand.Models
 {
-    public class Shoes
+    public class Shoes : Product
     {
+        public Shoes(int iD,
+            string naziv,
+            string description,
+            string image,
+            double price,
+            Color color,
+            Material material,
+            Condition condition,
+            Brand brand,
+            Gender gender,
+            User owner,
+            ShoesCategory shoesCategory,
+            int shoesSize) :
+            base(iD, naziv, description, image, price, color, material, condition, brand, gender, owner)
+        {
+            ShoesCategory = shoesCategory;
+            ShoeSize = shoesSize;
+        }
+
         private int _shoeSize;
         public int ShoeSize
         {

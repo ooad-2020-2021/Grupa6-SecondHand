@@ -11,6 +11,10 @@ namespace SecondHand.Models
         {
             public List<Product> Products = new List<Product>();
 
+            public UserProducts()
+            {
+            }
+
             public void AddProduct(Product product)
             {
                 Products.Add(product);

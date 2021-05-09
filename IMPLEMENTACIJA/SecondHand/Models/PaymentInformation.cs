@@ -10,6 +10,14 @@ namespace SecondHand.Models
         public string FullName { get; set; }
         public string CardNumber { get; set; }
         public string ValidThru { get; set; }
-        public string cvv { get; set; }
+        public string CVV { get; set; }
+
+        public PaymentInformation(string fullName, string cardNumber, string validThru, string cVV)
+        {
+            FullName = fullName;
+            CardNumber = cardNumber;
+            ValidThru = validThru;
+            CVV = cVV;
+        }
     }
 }

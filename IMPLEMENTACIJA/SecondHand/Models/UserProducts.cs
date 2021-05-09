@@ -9,6 +9,10 @@ namespace SecondHand.Models
     {
         public List<Product> Products = new List<Product>();
 
+        public UserProducts()
+        {
+        }
+
         public void AddProduct(Product product)
         {
             Products.Add(product);
@@ -16,6 +20,11 @@ namespace SecondHand.Models
         public void DeleteProduct(Product product)
         {
             Products.Remove(product);
+        }
+        public void EditProduct(Product product)
+        {
+            Product old = Products.Find(p => p.ID == product.ID);
+            old = product;
         }
     }
 }

@@ -9,5 +9,11 @@ namespace SecondHand.Models
     {
         public string Email { get; set; }
         public string Passwrod { get; set; }
+
+        public Administrator(string email, string passwrod)
+        {
+            Email = email;
+            Passwrod = passwrod;
+        }
     }
 }

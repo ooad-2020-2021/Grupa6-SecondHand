@@ -9,5 +9,11 @@ namespace SecondHand.Models
     {
         public int rating { get; set; }
         public User owner { get; set; }
+
+        public Review(int rating, User owner)
+        {
+            this.rating = rating;
+            this.owner = owner;
+        }
     }
 }
