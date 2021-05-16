@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pp\\Source\\Repos\\ooad-2020-2021\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj": {}
+    "C:\\Users\\pp\\Documents\\GitHub\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pp\\Source\\Repos\\ooad-2020-2021\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj": {
+    "C:\\Users\\pp\\Documents\\GitHub\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pp\\Source\\Repos\\ooad-2020-2021\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj",
+        "projectUniqueName": "C:\\Users\\pp\\Documents\\GitHub\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj",
         "projectName": "SecondHand",
-        "projectPath": "C:\\Users\\pp\\Source\\Repos\\ooad-2020-2021\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj",
+        "projectPath": "C:\\Users\\pp\\Documents\\GitHub\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\SecondHand.csproj",
         "packagesPath": "C:\\Users\\pp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pp\\Source\\Repos\\ooad-2020-2021\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\obj\\",
+        "outputPath": "C:\\Users\\pp\\Documents\\GitHub\\Grupa6-SecondHand\\IMPLEMENTACIJA\\SecondHand\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pp\\AppData\\Roaming\\NuGet\\NuGet.Config",
