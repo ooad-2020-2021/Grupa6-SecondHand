@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,10 +8,11 @@ namespace SecondHand.Models
 {
     public class Accessories : Product
     {
-        
+        [Required]
         public AccessoriesCategory AccessoriesCategory { get; set; }
 
-        public Accessories(int iD, 
+        public Accessories(
+            int iD, 
             string naziv, 
             string description, 
             string image, 

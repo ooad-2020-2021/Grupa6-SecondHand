@@ -7,6 +7,29 @@ namespace SecondHand.Models
 {
     public class Shoes : Product
     {
+        #region Properties
+        private int _shoeSize;
+        public int ShoeSize
+        {
+            get
+            {
+                return _shoeSize;
+            }
+            set
+            {
+                if(value > 33 && value < 47)
+                {
+                    _shoeSize = value;
+                }
+            }
+        }
+
+        public ShoesCategory ShoesCategory { get; set; }
+
+        #endregion
+
+        #region Konstruktor
+
         public Shoes(int iD,
             string naziv,
             string description,
@@ -26,22 +49,6 @@ namespace SecondHand.Models
             ShoeSize = shoesSize;
         }
 
-        private int _shoeSize;
-        public int ShoeSize
-        {
-            get
-            {
-                return _shoeSize;
-            }
-            set
-            {
-                if(value > 33 && value < 47)
-                {
-                    _shoeSize = value;
-                }
-            }
-        }
-
-        public ShoesCategory ShoesCategory { get; set; }
+        #endregion
     }
 }

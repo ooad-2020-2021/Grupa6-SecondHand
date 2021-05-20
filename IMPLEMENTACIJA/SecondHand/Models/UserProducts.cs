@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace SecondHand.Models
 {
     public class UserProducts
     {
+        [NotMapped]
         public List<Product> Products = new List<Product>();
 
         public UserProducts()
