@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +26,8 @@ namespace SecondHand.Models
             }
         }
 
+        [EnumDataType(typeof(ShoesCategory))]
+        [DisplayName("Shoe Category:")]
         public ShoesCategory ShoesCategory { get; set; }
 
         #endregion
