@@ -8,9 +8,24 @@ namespace SecondHand.Models
 {
     public class User
     {
+        private string _email;
+        private DateTime _birthday;
+        private DateTime _joiningDate;
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         [Key]
         [Required]
-        public int ID { get; set; }
+        public int ID { get; set; } //generisati
 
         [Required]
         public string Name { get; set; }
@@ -19,16 +34,36 @@ namespace SecondHand.Models
         public string Username { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string Email {
+            get
+            {
+                return _email;
+            }
+            set {
+                if (IsValidEmail(_email))
+                    _email = value;
+            } }
 
         [Required]
         public string Password { get; set; }
 
         [Required]
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday
+        {
+            get => _birthday;
+            set
+            {
+                if ((DateTime.Now - value).TotalDays > 6570)
+                {
+                    _birthday = value;
+                }
+            }
+        }
 
         [Required]
-        public DateTime JoiningDate { get; set; }
+        public DateTime JoiningDate { get => _joiningDate;
+            set { _joiningDate = DateTime.Now; }
+        }
 
         [Required]
         public string Adress { get; set; }
