@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -73,11 +74,40 @@ namespace SecondHand.Models
 
 
         public string ProfilePicture { get; set; }
+
+        
         public Cart Cart { get; set; }
-        public UserProducts UserProducts { get; set; }
+
 
         [Required]
         public PaymentInformation PaymentInformation { get; set; }
         public double UserRating { get; set; }
+
+        [NotMapped]
+        public List<Transactions> Transactions { get; set; }
+
+        [NotMapped]
+        public List<Product> Products { get; set; }
+
+        public User(int iD, string name, string username, string email, string password, DateTime birthday, DateTime joiningDate, string adress, Gender gender, string profilePicture)
+        {
+            ID = iD;
+            Name = name;
+            Username = username;
+            Email = email;
+            Password = password;
+            Birthday = birthday;
+            JoiningDate = joiningDate;
+            Adress = adress;
+            Gender = gender;
+            ProfilePicture = profilePicture;
+            Cart = new Cart();
+            //PaymentInformation = new PaymentInformation(fullName, cardNumber, validThru, cVV);
+            UserRating = 0;
+
+            Products = new List<Product>();
+            Transactions = new List<Transactions>();
+
+        }
     }
 }

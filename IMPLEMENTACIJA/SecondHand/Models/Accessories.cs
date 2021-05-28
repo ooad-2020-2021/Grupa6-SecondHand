@@ -14,6 +14,8 @@ namespace SecondHand.Models
         [DisplayName("Accessories Category:")]
         public AccessoriesCategory AccessoriesCategory { get; set; }
 
+       
+
         public Accessories(
             int iD, 
             string naziv, 

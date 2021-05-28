@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,24 +9,14 @@ namespace SecondHand.Models
 {
     public class Cart
     {
-        public class UserProducts
+        [Key]
+        public int Id { get; set; }
+
+        [NotMapped]
+        public List<Product> Products = new List<Product>();
+
+        public Cart()
         {
-
-            [NotMapped]
-            public List<Product> Products = new List<Product>();
-
-            public UserProducts()
-            {
-            }
-
-            public void AddProduct(Product product)
-            {
-                Products.Add(product);
-            }
-            public void DeleteProduct(Product product)
-            {
-                Products.Remove(product);
-            }
         }
     }
 }
