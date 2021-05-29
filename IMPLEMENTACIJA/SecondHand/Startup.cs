@@ -32,6 +32,13 @@ namespace SecondHand
 
             services.AddDbContext<SecondHandContext>(options =>
                     options.UseMySQL(Configuration.GetConnectionString("SecondHandContext")));
+
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<SecondHandContext>();
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
