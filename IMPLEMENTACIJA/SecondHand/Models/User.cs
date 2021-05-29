@@ -83,8 +83,6 @@ namespace SecondHand.Models
         public PaymentInformation PaymentInformation { get; set; }
         public double UserRating { get; set; }
 
-        [NotMapped]
-        public List<Transactions> Transactions { get; set; }
 
         [NotMapped]
         public List<Product> Products { get; set; }
@@ -106,7 +104,6 @@ namespace SecondHand.Models
             UserRating = 0;
 
             Products = new List<Product>();
-            Transactions = new List<Transactions>();
 
         }
     }

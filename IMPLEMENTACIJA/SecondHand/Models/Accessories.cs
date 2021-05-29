@@ -9,6 +9,7 @@ namespace SecondHand.Models
 {
     public class Accessories : Product
     {
+        
         [Required]
         [EnumDataType(typeof(AccessoriesCategory))]
         [DisplayName("Accessories Category:")]
@@ -16,22 +17,9 @@ namespace SecondHand.Models
 
        
 
-        public Accessories(
-            int iD, 
-            string naziv, 
-            string description, 
-            string image, 
-            double price, 
-            Color color, 
-            Material material, 
-            Condition condition, 
-            Brand brand, 
-            Gender gender, 
-            User owner,
-            AccessoriesCategory accessoriesCategory) : 
-            base(iD, naziv, description, image, price, color, material, condition, brand, gender, owner)
+        public Accessories() : 
+            base()
         {
-            AccessoriesCategory = accessoriesCategory;
         }
 
         

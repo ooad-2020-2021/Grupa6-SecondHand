@@ -10,6 +10,8 @@ namespace SecondHand.Models
     public class Shoes : Product
     {
         #region Properties
+      
+
         private int _shoeSize;
         public int ShoeSize
         {
@@ -34,23 +36,9 @@ namespace SecondHand.Models
 
         #region Konstruktor
 
-        public Shoes(int iD,
-            string naziv,
-            string description,
-            string image,
-            double price,
-            Color color,
-            Material material,
-            Condition condition,
-            Brand brand,
-            Gender gender,
-            User owner,
-            ShoesCategory shoesCategory,
-            int shoesSize) :
-            base(iD, naziv, description, image, price, color, material, condition, brand, gender, owner)
+        public Shoes() :
+            base()
         {
-            ShoesCategory = shoesCategory;
-            ShoeSize = shoesSize;
         }
 
         #endregion

@@ -10,6 +10,8 @@ namespace SecondHand.Models
     public class Clothing : Product
     {
         #region Properties
+       
+
         [Required]
         public ClothingSize ClothingSize { get; set; }
 
@@ -20,23 +22,9 @@ namespace SecondHand.Models
         #endregion
 
         #region Konstruktor
-        public Clothing(int iD, 
-            string naziv, 
-            string description, 
-            string image, 
-            double price, 
-            Color color, 
-            Material material, 
-            Condition condition, 
-            Brand brand, 
-            Gender gender, 
-            User owner,
-            ClothingSize clothingSize,
-            ClothingCategory clothingCategory) : 
-            base(iD, naziv, description, image, price, color, material, condition, brand, gender, owner)
+        public Clothing( ) : 
+            base()
         {
-            ClothingCategory = clothingCategory;
-            ClothingSize = clothingSize;
         }
         #endregion
 

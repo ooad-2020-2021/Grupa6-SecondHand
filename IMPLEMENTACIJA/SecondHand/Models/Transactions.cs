@@ -8,10 +8,21 @@ namespace SecondHand.Models
 {
     public class Transactions
     {
-        [Required]
-        public User User { get; set; }
-
+        [Key]
+        public int id { get; set; }
+        
         [Required]
         public Product Product { get; set; }
+
+        [Required]
+        public User Buyer { get; set; }
+
+        [Required]
+        public User Seler { get; set; }
+
+
+        public Transactions()
+        {
+        }
     }
 }

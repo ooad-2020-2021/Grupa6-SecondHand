@@ -53,28 +53,9 @@ namespace SecondHand.Models
 
         #region Konstruktor
 
-        protected Product(int iD, string naziv, 
-            string description, 
-            string image, 
-            double price, 
-            Color color, 
-            Material material, 
-            Condition condition, 
-            Brand brand, 
-            Gender gender, 
-            User owner)
+        protected Product()
         {
-            ID = iD;
-            Naziv = naziv;
-            Description = description;
-            Image = image;
-            Price = price;
-            Color = color;
-            Material = material;
-            Condition = condition;
-            Brand = brand;
-            Gender = gender;
-            Owner = owner;
+           
         }
 
         #endregion

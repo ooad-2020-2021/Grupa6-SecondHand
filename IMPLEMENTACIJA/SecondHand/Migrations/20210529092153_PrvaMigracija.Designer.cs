@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecondHand.Data;
 
 namespace SecondHand.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    partial class SecondHandContextModelSnapshot : ModelSnapshot
+    [Migration("20210529092153_PrvaMigracija")]
+    partial class PrvaMigracija
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,32 +147,6 @@ namespace SecondHand.Migrations
                     b.ToTable("Review");
                 });
 
-            modelBuilder.Entity("SecondHand.Models.Transactions", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("BuyerID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SelerID")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("BuyerID");
-
-                    b.HasIndex("ProductID");
-
-                    b.HasIndex("SelerID");
-
-                    b.ToTable("Transactions");
-                });
-
             modelBuilder.Entity("SecondHand.Models.User", b =>
                 {
                     b.Property<int>("ID")
@@ -283,27 +259,6 @@ namespace SecondHand.Migrations
                     b.HasOne("SecondHand.Models.User", "ReviewedUser")
                         .WithMany()
                         .HasForeignKey("ReviewedUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SecondHand.Models.Transactions", b =>
-                {
-                    b.HasOne("SecondHand.Models.User", "Buyer")
-                        .WithMany()
-                        .HasForeignKey("BuyerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SecondHand.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SecondHand.Models.User", "Seler")
-                        .WithMany()
-                        .HasForeignKey("SelerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
