@@ -12,17 +12,22 @@ namespace SecondHand.Models
         #region Properties
         [Key]
         [Required]
+        [DisplayName("ID:")]
         public int ID { get; set; }
 
         [Required]
+        [DisplayName("Name:")]
         public string Naziv { get; set; }
 
+        [DisplayName("Description:")]
         public string Description { get; set; }
 
         [Required]
+        [DisplayName("ImageURL:")]
         public string Image { get; set; }
 
         [Required]
+        [DisplayName("Price:")]
         public double Price { get; set; }
 
         [EnumDataType(typeof(Color))]
@@ -47,6 +52,7 @@ namespace SecondHand.Models
         public Gender Gender { get; set; }
 
         [Required]
+        [DisplayName("Owner:")]
         public User Owner { get; set; }
 
         #endregion

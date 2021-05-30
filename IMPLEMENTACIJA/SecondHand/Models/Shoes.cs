@@ -13,6 +13,8 @@ namespace SecondHand.Models
       
 
         private int _shoeSize;
+
+        [DisplayName("Shoe size:")]
         public int ShoeSize
         {
             get
