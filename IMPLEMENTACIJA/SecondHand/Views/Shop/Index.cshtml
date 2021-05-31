@@ -4,80 +4,151 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    .pozadina-svijetla {
+        background-color: #F7EFED;
+    }
+    .sirinaivisina {
+        width ="400";
+        height ="500";
+    }
+</style>
+
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Naziv)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Material)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Condition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Material)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Condition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!--
+@foreach (var item in Model)
+{
+    <div.ex1 {
+  width: 500px;
+  margin: auto} class="container" >
+        <div class="row">
+            <div class="col-sm">
+                <div class="card"><img class="card-img-top" src=@Html.DisplayFor(model => item.Image) width=400 height=500 alt="produc image"/></div>
+                <div class="col-sm">
+                    <div class="card-body">
+
+                        <dl class="row">
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => item.Naziv)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => item.Naziv)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => item.Description)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => item.Description)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => item.Price)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => item.Price)
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div.ex1>
+        }
+-->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+    <!-- First Photo Grid-->
+    @foreach (var item in Model)
+    {
+        <div class="pozadina-svijetla">
+        <div class="w3-row-padding w3-padding-16 w3-center" id="proizvod">
+            <div class="w3-quarter">
+                <img src=@Html.DisplayFor(model => item.Image) alt="Slika" width="400" height="500">
+                <h3>@Html.DisplayFor(model => item.Naziv)</h3>
+                <p>@Html.DisplayFor(model => item.Description)</p>
+                <b>@Html.DisplayFor(model => item.Price)</b>
+            </div>
+        </div>
+        </div>
+    }
+</div>
+        <!--
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Naziv)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Color)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Material)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Condition)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Brand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Naziv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Image)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Material)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Condition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brand)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        -->
