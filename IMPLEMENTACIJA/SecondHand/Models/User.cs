@@ -86,6 +86,11 @@ namespace SecondHand.Models
         [NotMapped]
         public List<Product> Products { get; set; }
 
+        public User ()
+        {
+
+        }
+
         public User(int iD, string name, string username, string email, string password, DateTime birthday, DateTime joiningDate, string adress, Gender gender, string profilePicture)
         {
             ID = iD;

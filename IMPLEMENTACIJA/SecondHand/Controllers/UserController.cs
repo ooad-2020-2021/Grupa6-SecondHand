@@ -54,7 +54,7 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Username,Email,Password,Birthday,JoiningDate,Adress,Gender,ProfilePicture,UserRating")] User user)
+        public async Task<IActionResult> Create([Bind("")]User user) // OVO TREBA PREPRAVITI
         {
             if (ModelState.IsValid)
             {
