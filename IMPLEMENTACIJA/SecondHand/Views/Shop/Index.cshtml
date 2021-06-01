@@ -4,168 +4,59 @@
     ViewData["Title"] = "Shop";
 }
 
-<style>
-    .pozadina-svijetla {
-        background-color: #F7EFED;
-    }
-
-    .sirinaivisina {
-        width ="400";
-        height ="500";
-    }
-</style>
 
 <h1>Shop</h1>
 
+<!--
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-    <!--First Photo Grid-->
-    <!--<table class="table">
-            <tbody>
-                @{var brojac = 0;}
-                <tr>
-                    @{Model.ElementAt<Product>(0);}
-        @{Model.Count<Product>();}
-                    @foreach (var item in Model)
-                    {
-                        <td>
-                            <div class="w3-row-padding w3-padding-16 w3-center" id="proizvod">
-                                <div class="w3-quarter">
-                                    <img src=@Html.DisplayFor(model => item.Image) alt="Slika" width="200" height="300">
-                                    <h3>@Html.DisplayFor(model => item.Naziv)</h3>
-                                    <p>@Html.DisplayFor(model => item.Description)</p>
-                                    <b>@Html.DisplayFor(model => item.Price)</b>
-                                </div>
-                            </div>
-                        </td>
-                    }
-                </tr>
-                </tbody>
-        </table> -->
-    <table>
-        <tbody>
-            @for (int i = 0; i < Model.Count<Product>(); i += 3)
-            {
+-->
+<table>
+    <tbody>
+        @for (int i = 0; i < Model.Count<Product>(); i += 3)
+        {
             <tr>
                 <td>
                     <div class="w3-quarter">
                         <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i).ID)">
                             <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i).Image) alt="Slika" width="400" height="500">
                         </a>
-                            <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Naziv)</h3>
-                            <p>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Description)</p>
-                            <b>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Price)</b>
+                        <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Naziv)</h3>
+                        <p>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Description)</p>
+                        <b>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Price)</b>
                     </div>
                 </td>
                 <td>
                     @if (i + 1 != Model.Count<Product>())
                     {
-                    <div class="w3-quarter">
-                        <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).ID)">
-                            <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).Image) alt="Slika" width="400" height="500">
-                        </a>
+                        <div class="w3-quarter">
+                            <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).ID)">
+                                <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).Image) alt="Slika" width="400" height="500">
+                            </a>
 
                             <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 1).Naziv) </h3>
                             <p>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 1).Description)</p>
                             <b>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 1).Price)</b>
-                    </div>
+                        </div>
                     }
                 </td>
                 <td>
                     @if (i + 2 != Model.Count<Product>())
                     {
-                    <div class="w3-quarter">
-                        <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).ID)">
-                            <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).Image) alt="Slika" width="400" height="500">
-                        </a>
+                        <div class="w3-quarter">
+                            <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).ID)">
+                                <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).Image) alt="Slika" width="400" height="500">
+                            </a>
                             <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 2).Naziv)</h3>
                             <p>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 2).Description)</p>
                             <b>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 2).Price)</b>
-                    </div>
+                        </div>
                     }
                 </td>
             </tr>
 
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 </div>
-    <!--
-    <table class="table">
-
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Naziv)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Color)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Material)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Condition)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Brand)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Naziv)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Image)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Color)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Material)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Condition)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Brand)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    -->
