@@ -134,6 +134,16 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+
+        // GET: Shop/Cart/Confirm address
+        [HttpGet, ActionName("Address")]
+        public async Task<IActionResult> ConfirmAddress()
+        {
+            var user1 = await _context.User.FirstAsync<User>();
+            return View(user1);
+        }
+
+
         // POST: Shop/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

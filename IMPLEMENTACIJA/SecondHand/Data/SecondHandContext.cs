@@ -34,5 +34,7 @@ namespace SecondHand.Data
         public DbSet<SecondHand.Models.User> User { get; set; }
 
         public DbSet<SecondHand.Models.Administrator> Administrator { get; set; }
+
+        public DbSet<SecondHand.Models.Cart> Cart { get; set; }
     }
 }
