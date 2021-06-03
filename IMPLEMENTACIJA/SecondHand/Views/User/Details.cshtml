@@ -9,70 +9,85 @@
 <div>
     <h4>User</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Birthday)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Birthday)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JoiningDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JoiningDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Adress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Adress)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProfilePicture)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProfilePicture)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserRating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserRating)
-        </dd>
-    </dl>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div
+                <div class="card"><img class="card-img-overlay" src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png" alt="produc image" width=250 height=250 /></div>
+                </div>
+                <div class="col">
+
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Username)
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.Username)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.Gender)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model.ID">
+                            <button type="button" class="btn btn-dark">Edit Profile</button>
+                        </a>
+                        <button type="button" class="btn btn-dark">Payment Information</button>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+    
+                </div>
+                <div class="col">
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-5">
+                                @Html.DisplayNameFor(model => model.Birthday)
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.Birthday)
+                            </dd>
+                            <dt class="col-sm-5">
+                                @Html.DisplayNameFor(model => model.JoiningDate)
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.JoiningDate)
+                            </dd>
+                            <dt class="col-sm-5">
+                                @Html.DisplayNameFor(model => model.Adress)
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.Adress)
+                            </dd>
+                            <dt class="col-sm-5">
+                                @Html.DisplayNameFor(model => model.UserRating)
+                            </dt>
+                            <dd class="col-sm-6">
+                                @Html.DisplayFor(model => model.UserRating)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
