@@ -11,7 +11,6 @@ using SecondHand.Models;
 namespace SecondHand.Controllers
 {
     public class UserController : Controller
-
     {
         
         private readonly SecondHandContext _context;
@@ -57,8 +56,8 @@ namespace SecondHand.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name, UserName, Email, PasswordHash, " +
-            "Adress, Gender, ProfilePicture, PaymentInformation.FullName, PaymentInformation.CardNumber, PaymentInformation.ValidThru" +
-            "PaymentInformation.CVV")]User user) // OVO TREBA PREPRAVITI ?????????????????
+            "Adress, Gender, ProfilePicture, FullName, CardNumber, ValidThru, " +
+            "CVV")]User user) // OVO TREBA PREPRAVITI ?????????????????
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +89,9 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,UserName,Email,PasswordHash,Birthday,JoiningDate,Adress,Gender,ProfilePicture,UserRating")] User user)
+        public async Task<IActionResult> Edit(string id, [Bind("Name, UserName, Email, PasswordHash, " +
+            "Adress, Gender, ProfilePicture, FullName, CardNumber, ValidThru, " +
+            "CVV")] User user) // treba li dodati i id?
         {
             if (id != user.Id)
             {

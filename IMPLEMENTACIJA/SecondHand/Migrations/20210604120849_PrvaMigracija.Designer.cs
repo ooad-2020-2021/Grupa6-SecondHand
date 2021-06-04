@@ -9,7 +9,7 @@ using SecondHand.Data;
 namespace SecondHand.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210604112839_PrvaMigracija")]
+    [Migration("20210604120849_PrvaMigracija")]
     partial class PrvaMigracija
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
