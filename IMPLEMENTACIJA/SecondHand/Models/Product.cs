@@ -12,7 +12,7 @@ namespace SecondHand.Models
         #region Properties
         [Key]
         [Required]
-        [DisplayName("ID:")]
+        [DisplayName("Id:")]
         public int ID { get; set; }
 
         [Required]

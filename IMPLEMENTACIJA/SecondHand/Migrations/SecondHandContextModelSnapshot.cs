@@ -110,15 +110,16 @@ namespace SecondHand.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("OwnerID")
-                        .HasColumnType("int");
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("varchar(767)");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("OwnerID");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Product");
 
@@ -131,20 +132,22 @@ namespace SecondHand.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("OwnerID")
-                        .HasColumnType("int");
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("varchar(767)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReviewedUserID")
-                        .HasColumnType("int");
+                    b.Property<string>("ReviewedUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(767)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("OwnerID");
+                    b.HasIndex("OwnerId");
 
-                    b.HasIndex("ReviewedUserID");
+                    b.HasIndex("ReviewedUserId");
 
                     b.ToTable("Review");
                 });
@@ -155,30 +158,34 @@ namespace SecondHand.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BuyerID")
-                        .HasColumnType("int");
+                    b.Property<string>("BuyerId")
+                        .IsRequired()
+                        .HasColumnType("varchar(767)");
 
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SelerID")
-                        .HasColumnType("int");
+                    b.Property<string>("SelerId")
+                        .IsRequired()
+                        .HasColumnType("varchar(767)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("BuyerID");
+                    b.HasIndex("BuyerId");
 
                     b.HasIndex("ProductID");
 
-                    b.HasIndex("SelerID");
+                    b.HasIndex("SelerId");
 
                     b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("SecondHand.Models.User", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(767)");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("Adress")
@@ -191,9 +198,14 @@ namespace SecondHand.Migrations
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -201,28 +213,50 @@ namespace SecondHand.Migrations
                     b.Property<DateTime>("JoiningDate")
                         .HasColumnType("datetime");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<string>("NormalizedEmail")
                         .HasColumnType("text");
 
-                    b.Property<int>("PaymentInformationId")
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("PaymentInformationId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ProfilePicture")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("text");
 
                     b.Property<double>("UserRating")
                         .HasColumnType("double");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CartId");
 
@@ -271,7 +305,7 @@ namespace SecondHand.Migrations
                 {
                     b.HasOne("SecondHand.Models.User", "Owner")
                         .WithMany()
-                        .HasForeignKey("OwnerID")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -280,13 +314,13 @@ namespace SecondHand.Migrations
                 {
                     b.HasOne("SecondHand.Models.User", "Owner")
                         .WithMany()
-                        .HasForeignKey("OwnerID")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SecondHand.Models.User", "ReviewedUser")
                         .WithMany()
-                        .HasForeignKey("ReviewedUserID")
+                        .HasForeignKey("ReviewedUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -295,7 +329,7 @@ namespace SecondHand.Migrations
                 {
                     b.HasOne("SecondHand.Models.User", "Buyer")
                         .WithMany()
-                        .HasForeignKey("BuyerID")
+                        .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -307,7 +341,7 @@ namespace SecondHand.Migrations
 
                     b.HasOne("SecondHand.Models.User", "Seler")
                         .WithMany()
-                        .HasForeignKey("SelerID")
+                        .HasForeignKey("SelerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -320,9 +354,7 @@ namespace SecondHand.Migrations
 
                     b.HasOne("SecondHand.Models.PaymentInformation", "PaymentInformation")
                         .WithMany()
-                        .HasForeignKey("PaymentInformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaymentInformationId");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,7 +10,7 @@ namespace SecondHand.Models
     public class PaymentInformation
     {
         [Key]
-        [DisplayName("ID:")]
+        [DisplayName("Id:")]
         public int Id { get; set; }
 
         [Required]

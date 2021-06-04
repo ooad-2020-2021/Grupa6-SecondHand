@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -8,34 +9,15 @@ using System.Threading.Tasks;
 
 namespace SecondHand.Models
 {
-    public class User
+    public class User : IdentityUser
     {
 
         private DateTime _birthday;
         private DateTime _joiningDate;
 
-        [Key]
-        [Required]
-        [DisplayName("Id:")]
-        public int ID { get; set; } //generisati
-
         [Required]
         [DisplayName("Name:")]
         public string Name { get; set; }
-
-        [Required]
-        [DisplayName("Username:")]
-        public string Username { get; set; }
-
-        [Required]
-        [DisplayName("E-mail:")]
-        [RegularExpression(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*" + "@" + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$",
-            ErrorMessage = "Neispravan format za E-mail!")]
-        public string Email { get; set; }
-
-        [Required]
-        [DisplayName("Password:")]
-        public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -74,41 +56,51 @@ namespace SecondHand.Models
         [DisplayName("Cart:")]
         public Cart Cart { get; set; }
 
-
-        [Required]
         [DisplayName("Payment information:")]
         public PaymentInformation PaymentInformation { get; set; }
 
         [DisplayName("User rating:")]
         public double UserRating { get; set; }
 
-
-        [NotMapped]
-        public List<Product> Products { get; set; }
+        [Key]
+        public override string Id { get => base.Id; set => base.Id = value; }
+        public override string UserName { get => base.UserName; set => base.UserName = value; }
+        public override string NormalizedUserName { get => base.NormalizedUserName; set => base.NormalizedUserName = value; }
+        public override string Email { get => base.Email; set => base.Email = value; }
+        public override string NormalizedEmail { get => base.NormalizedEmail; set => base.NormalizedEmail = value; }
+        public override bool EmailConfirmed { get => base.EmailConfirmed; set => base.EmailConfirmed = value; }
+        public override string PasswordHash { get => base.PasswordHash; set => base.PasswordHash = value; }
+        public override string SecurityStamp { get => base.SecurityStamp; set => base.SecurityStamp = value; }
+        public override string ConcurrencyStamp { get => base.ConcurrencyStamp; set => base.ConcurrencyStamp = value; }
+        public override string PhoneNumber { get => base.PhoneNumber; set => base.PhoneNumber = value; }
+        public override bool PhoneNumberConfirmed { get => base.PhoneNumberConfirmed; set => base.PhoneNumberConfirmed = value; }
+        public override bool TwoFactorEnabled { get => base.TwoFactorEnabled; set => base.TwoFactorEnabled = value; }
+        public override DateTimeOffset? LockoutEnd { get => base.LockoutEnd; set => base.LockoutEnd = value; }
+        public override bool LockoutEnabled { get => base.LockoutEnabled; set => base.LockoutEnabled = value; }
+        public override int AccessFailedCount { get => base.AccessFailedCount; set => base.AccessFailedCount = value; }
 
         public User ()
         {
 
         }
 
-        public User(int iD, string name, string username, string email, string password, DateTime birthday, DateTime joiningDate, string adress, Gender gender, string profilePicture)
+        public User(string userName) : base(userName)
         {
-            ID = iD;
-            Name = name;
-            Username = username;
-            Email = email;
-            Password = password;
-            Birthday = birthday;
-            JoiningDate = joiningDate;
-            Adress = adress;
-            Gender = gender;
-            ProfilePicture = profilePicture;
-            Cart = new Cart();
-            //PaymentInformation = new PaymentInformation(fullName, cardNumber, validThru, cVV);
-            UserRating = 0;
+        }
 
-            Products = new List<Product>();
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

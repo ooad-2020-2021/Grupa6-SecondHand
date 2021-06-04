@@ -26,10 +26,10 @@
                                 @Html.DisplayFor(model => model.Name)
                             </dd>
                             <dt class="col-sm-4">
-                                @Html.DisplayNameFor(model => model.Username)
+                                @Html.DisplayNameFor(model => model.UserName)
                             </dt>
                             <dd class="col-sm-7">
-                                @Html.DisplayFor(model => model.Username)
+                                @Html.DisplayFor(model => model.UserName)
                             </dd>
                             <dt class="col-sm-4">
                                 @Html.DisplayNameFor(model => model.Email)
@@ -47,7 +47,7 @@
                         </dl>
                     </div>
                     <div>
-                        <a asp-action="Edit" asp-route-id="@Model.ID">
+                        <a asp-action="Edit" asp-route-id="@Model.Id">
                             <button type="button" class="btn btn-dark">Edit Profile</button>
                         </a>
                         <button type="button" class="btn btn-dark">Payment Information</button>

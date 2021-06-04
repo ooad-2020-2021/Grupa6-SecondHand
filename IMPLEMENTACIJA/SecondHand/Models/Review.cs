@@ -10,7 +10,7 @@ namespace SecondHand.Models
     public class Review
     {
         [Key]
-        [DisplayName("ID:")]
+        [DisplayName("Id:")]
         public int ID { get; set; }
 
         [Required]

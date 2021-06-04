@@ -10,7 +10,7 @@ namespace SecondHand.Models
     public class Administrator
     {
         [Key]
-        [DisplayName("ID:")]
+        [DisplayName("Id:")]
         public int ID { get; set; }
 
         [Required]
@@ -20,7 +20,7 @@ namespace SecondHand.Models
         public string Email { get; set; }
 
         [Required]
-        [DisplayName("Password:")]
+        [DisplayName("PasswordHash:")]
         public string Passwrod { get; set; }
 
         public Administrator()

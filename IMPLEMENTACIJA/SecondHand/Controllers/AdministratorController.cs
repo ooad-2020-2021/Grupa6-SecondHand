@@ -54,7 +54,7 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Email,Passwrod")] Administrator administrator)
+        public async Task<IActionResult> Create([Bind("Id,Email,Passwrod")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Email,Passwrod")] Administrator administrator)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Passwrod")] Administrator administrator)
         {
             if (id != administrator.ID)
             {

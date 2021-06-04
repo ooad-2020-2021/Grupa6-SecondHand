@@ -11,7 +11,9 @@ using SecondHand.Models;
 namespace SecondHand.Controllers
 {
     public class UserController : Controller
+
     {
+        
         private readonly SecondHandContext _context;
 
         public UserController(SecondHandContext context)
@@ -26,7 +28,7 @@ namespace SecondHand.Controllers
         }
 
         // GET: User/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null)
             {
@@ -34,7 +36,7 @@ namespace SecondHand.Controllers
             }
 
             var user = await _context.User
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -54,7 +56,7 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name, Username, Email, Password, " +
+        public async Task<IActionResult> Create([Bind("Name, UserName, Email, PasswordHash, " +
             "Adress, Gender, ProfilePicture, PaymentInformation.FullName, PaymentInformation.CardNumber, PaymentInformation.ValidThru" +
             "PaymentInformation.CVV")]User user) // OVO TREBA PREPRAVITI ?????????????????
         {
@@ -88,9 +90,9 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Username,Email,Password,Birthday,JoiningDate,Adress,Gender,ProfilePicture,UserRating")] User user)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,UserName,Email,PasswordHash,Birthday,JoiningDate,Adress,Gender,ProfilePicture,UserRating")] User user)
         {
-            if (id != user.ID)
+            if (id != user.Id)
             {
                 return NotFound();
             }
@@ -104,7 +106,7 @@ namespace SecondHand.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.ID))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -119,7 +121,7 @@ namespace SecondHand.Controllers
         }
 
         // GET: User/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string? id)
         {
             if (id == null)
             {
@@ -127,7 +129,7 @@ namespace SecondHand.Controllers
             }
 
             var user = await _context.User
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -147,9 +149,9 @@ namespace SecondHand.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string id)
         {
-            return _context.User.Any(e => e.ID == id);
+            return _context.User.Any(e => e.Id == id);
         }
     }
 }

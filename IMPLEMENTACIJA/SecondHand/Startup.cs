@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SecondHand.Data;
+using SecondHand.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace SecondHand
                     options.UseMySQL(Configuration.GetConnectionString("SecondHandContext")));
 
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SecondHandContext>();
 
             services.AddControllersWithViews();

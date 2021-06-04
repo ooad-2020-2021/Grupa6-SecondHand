@@ -10,19 +10,19 @@ namespace SecondHand.Models
     public class Transactions
     {
         [Key]
-        [DisplayName("ID:")]
+        [DisplayName("Id:")]
         public int id { get; set; }
         
         [Required]
-        [DisplayName("Product ID:")]
+        [DisplayName("Product Id:")]
         public Product Product { get; set; }
 
         [Required]
-        [DisplayName("Buyer ID:")]
+        [DisplayName("Buyer Id:")]
         public User Buyer { get; set; }
 
         [Required]
-        [DisplayName("Seler ID:")]
+        [DisplayName("Seler Id:")]
         public User Seler { get; set; }
 
 

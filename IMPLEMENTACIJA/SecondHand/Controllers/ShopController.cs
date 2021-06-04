@@ -54,7 +54,7 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Naziv,Description,Image,Price,Color,Material,Condition,Brand,Gender")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Naziv,Description,Image,Price,Color,Material,Condition,Brand,Gender")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SecondHand.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Naziv,Description,Image,Price,Color,Material,Condition,Brand,Gender")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Naziv,Description,Image,Price,Color,Material,Condition,Brand,Gender")] Product product)
         {
             if (id != product.ID)
             {
