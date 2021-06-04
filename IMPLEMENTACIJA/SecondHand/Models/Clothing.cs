@@ -16,9 +16,9 @@ namespace SecondHand.Models
         public ClothingSize ClothingSize { get; set; }
 
         [Required]
-        [EnumDataType(typeof(ClothingCategory))]
+        [EnumDataType(typeof(AccessoriesChategory))]
         [DisplayName("Clothing category:")]
-        public ClothingCategory ClothingCategory { get; set; }
+        public AccessoriesChategory ClothingCategory { get; set; }
         #endregion
 
         #region Konstruktor

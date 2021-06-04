@@ -8,7 +8,7 @@ using SecondHand.Models;
 
 namespace SecondHand.Data
 {
-    public class SecondHandContext : DbContext
+    public class SecondHandContext : IdentityDbContext
     {
         public DbSet<Product> Products{ get; set; }
         public DbSet<Accessories> Accessories { get; set; }
@@ -25,17 +25,16 @@ namespace SecondHand.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<Review>().ToTable("Review");
             modelBuilder.Entity<Transactions>().ToTable("Transactions");
-            modelBuilder.Entity<Administrator>().ToTable("Administrator");
+            modelBuilder.Entity<Cart>().ToTable("Cart");
+
+            base.OnModelCreating(modelBuilder);
 
         }
 
-        public DbSet<SecondHand.Models.User> User { get; set; }
 
-        public DbSet<SecondHand.Models.Administrator> Administrator { get; set; }
 
         public DbSet<SecondHand.Models.Cart> Cart { get; set; }
     }

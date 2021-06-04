@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -53,7 +54,7 @@ namespace SecondHand.Models
 
         [Required]
         [DisplayName("Owner:")]
-        public User Owner { get; set; }
+        public IdentityUser Owner { get; set; }
 
         #endregion
 

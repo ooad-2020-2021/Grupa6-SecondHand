@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,8 +13,9 @@ namespace SecondHand.Models
         [Key]
         public int Id { get; set; }
 
-        [NotMapped]
-        public List<Product> Products = new List<Product>();
+        public IdentityUser user { get; set; }
+
+        public Product product { get; set; }
 
         public Cart()
         {

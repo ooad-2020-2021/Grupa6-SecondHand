@@ -9,21 +9,16 @@ namespace SecondHand.Models
 {
     public class Accessories : Product
     {
-        
+
+
         [Required]
-        [EnumDataType(typeof(AccessoriesCategory))]
-        [DisplayName("Accessories Category:")]
-        public AccessoriesCategory AccessoriesCategory { get; set; }
+        [EnumDataType(typeof(AccessoriesChategory))]
+        [DisplayName("Accessorie category:")]
+        public AccessoriesChategory AccessoriesChategory { get; set; }
 
-       
-
-        public Accessories() : 
-            base()
+        public Accessories()
         {
         }
-
-        
-
-        
     }
 }
+

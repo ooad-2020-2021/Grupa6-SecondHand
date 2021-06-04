@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -19,11 +20,11 @@ namespace SecondHand.Models
 
         [Required]
         [DisplayName("Owner:")]
-        public User Owner { get; set; }
+        public IdentityUser Owner { get; set; }
 
         [Required]
         [DisplayName("Review user:")]
-        public User ReviewedUser { get; set; }
+        public IdentityUser ReviewedUser { get; set; }
 
         public Review()
         {

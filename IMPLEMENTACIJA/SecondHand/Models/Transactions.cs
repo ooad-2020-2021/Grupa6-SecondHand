@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -19,11 +20,11 @@ namespace SecondHand.Models
 
         [Required]
         [DisplayName("Buyer Id:")]
-        public User Buyer { get; set; }
+        public IdentityUser Buyer { get; set; }
 
         [Required]
         [DisplayName("Seler Id:")]
-        public User Seler { get; set; }
+        public IdentityUser Seler { get; set; }
 
 
         public Transactions()

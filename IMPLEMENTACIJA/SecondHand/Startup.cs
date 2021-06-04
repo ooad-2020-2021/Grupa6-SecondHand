@@ -38,7 +38,7 @@ namespace SecondHand
                     options.UseMySQL(Configuration.GetConnectionString("SecondHandContext")));
 
 
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<SecondHandContext>();
 
             services.AddControllersWithViews();
