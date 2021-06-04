@@ -35,22 +35,6 @@ namespace SecondHand.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PaymentInformation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    FullName = table.Column<string>(nullable: false),
-                    CardNumber = table.Column<string>(nullable: false),
-                    ValidThru = table.Column<string>(nullable: false),
-                    CVV = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PaymentInformation", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -62,7 +46,10 @@ namespace SecondHand.Migrations
                     Gender = table.Column<int>(nullable: false),
                     ProfilePicture = table.Column<string>(nullable: true),
                     CartId = table.Column<int>(nullable: true),
-                    PaymentInformationId = table.Column<int>(nullable: true),
+                    FullName = table.Column<string>(nullable: false),
+                    CardNumber = table.Column<string>(nullable: false),
+                    ValidThru = table.Column<string>(nullable: false),
+                    CVV = table.Column<string>(nullable: false),
                     UserRating = table.Column<double>(nullable: false),
                     UserName = table.Column<string>(nullable: true),
                     NormalizedUserName = table.Column<string>(nullable: true),
@@ -86,12 +73,6 @@ namespace SecondHand.Migrations
                         name: "FK_User_Cart_CartId",
                         column: x => x.CartId,
                         principalTable: "Cart",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_User_PaymentInformation_PaymentInformationId",
-                        column: x => x.PaymentInformationId,
-                        principalTable: "PaymentInformation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -224,11 +205,6 @@ namespace SecondHand.Migrations
                 name: "IX_User_CartId",
                 table: "User",
                 column: "CartId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_PaymentInformationId",
-                table: "User",
-                column: "PaymentInformationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -250,9 +226,6 @@ namespace SecondHand.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cart");
-
-            migrationBuilder.DropTable(
-                name: "PaymentInformation");
         }
     }
 }

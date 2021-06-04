@@ -47,33 +47,6 @@ namespace SecondHand.Migrations
                     b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("SecondHand.Models.PaymentInformation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CVV")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CardNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ValidThru")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaymentInformation");
-                });
-
             modelBuilder.Entity("SecondHand.Models.Product", b =>
                 {
                     b.Property<int>("ID")
@@ -195,6 +168,14 @@ namespace SecondHand.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
@@ -206,6 +187,10 @@ namespace SecondHand.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -232,9 +217,6 @@ namespace SecondHand.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PaymentInformationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
@@ -256,11 +238,13 @@ namespace SecondHand.Migrations
                     b.Property<double>("UserRating")
                         .HasColumnType("double");
 
+                    b.Property<string>("ValidThru")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
-
-                    b.HasIndex("PaymentInformationId");
 
                     b.ToTable("User");
                 });
@@ -351,10 +335,6 @@ namespace SecondHand.Migrations
                     b.HasOne("SecondHand.Models.Cart", "Cart")
                         .WithMany()
                         .HasForeignKey("CartId");
-
-                    b.HasOne("SecondHand.Models.PaymentInformation", "PaymentInformation")
-                        .WithMany()
-                        .HasForeignKey("PaymentInformationId");
                 });
 #pragma warning restore 612, 618
         }
