@@ -69,6 +69,9 @@ namespace SecondHand.Controllers
 
             return View(product);
         }
+
+        
+
         /*
         // GET: Shop/Create
         public IActionResult Create()
@@ -115,6 +118,29 @@ namespace SecondHand.Controllers
                 if (p.Owner != null && p.Owner.Id == idKorisnika)
                     povrat.Add(p);
             }
+
+            return View(povrat);
+        }
+
+        public async Task<IActionResult> Cart()
+        {
+
+            var korisnik = await GetCurrentUserAsync();
+            var idKorisnika = korisnik.Id;
+            var povrat = new List<Product>();
+
+            var korpaProizvodi = await _context.Cart.ToListAsync();
+
+            foreach(var korpa in korpaProizvodi) {
+                if (korpa.user != null && korpa.user.Id == idKorisnika)
+                    povrat.Add(korpa.product);
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
 
             return View(povrat);
         }
