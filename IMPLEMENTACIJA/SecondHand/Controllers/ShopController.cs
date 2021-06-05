@@ -96,6 +96,30 @@ namespace SecondHand.Controllers
         }*/
 
         // GET: Shop/Create
+
+
+        public async Task<IActionResult> UserProducts()
+        {
+
+            var korisnik = await GetCurrentUserAsync();
+            var idKorisnika = korisnik.Id;
+            
+            var Proizvodi = new List<Product>();
+            var povrat = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            foreach(Product p in Proizvodi) {
+                if (p.Owner != null && p.Owner.Id == idKorisnika)
+                    povrat.Add(p);
+            }
+
+            return View(povrat);
+        }
+
+
         public IActionResult CreateAccessories()
         {
             return View();

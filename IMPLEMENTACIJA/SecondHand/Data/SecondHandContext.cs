@@ -35,5 +35,7 @@ namespace SecondHand.Data
 
         }
 
+        public DbSet<SecondHand.Models.Product> Product { get; set; }
+
     }
 }
