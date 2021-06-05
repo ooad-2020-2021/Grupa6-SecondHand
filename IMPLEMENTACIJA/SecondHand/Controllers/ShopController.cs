@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Web;
 using Microsoft.EntityFrameworkCore;
 using SecondHand.Data;
 using SecondHand.Models;
@@ -19,7 +19,7 @@ namespace SecondHand.Controllers
 
         private readonly SecondHandContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IWebHostEnvironment webHostEnvironment;
+        private IWebHostEnvironment Environment;
 
         /*public ShopController(SecondHandContext context)
         {
@@ -27,9 +27,9 @@ namespace SecondHand.Controllers
         }*/
 
 
-        public ShopController(SecondHandContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment hostEnvironment)
+        public ShopController(SecondHandContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment environment)
         {
-            webHostEnvironment = hostEnvironment;
+            Environment = environment;
             _userManager = userManager;
             _context = context;
         }
@@ -45,7 +45,7 @@ namespace SecondHand.Controllers
 
             return View(Proizvodi);
         }
-        /*
+        
         // GET: Shop/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,8 +54,14 @@ namespace SecondHand.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
             if (product == null)
             {
                 return NotFound();
@@ -63,7 +69,7 @@ namespace SecondHand.Controllers
 
             return View(product);
         }
-
+        /*
         // GET: Shop/Create
         public IActionResult Create()
         {
@@ -99,12 +105,30 @@ namespace SecondHand.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAccessories (IFormCollection formCollection)
+        public async Task<IActionResult> CreateAccessories (IFormCollection formCollection, [Bind("ImageFile")] Accessories ac)
         {
             try
             {
-                //string uniqueFileName = UploadedFile(file);
                 Accessories product = new Accessories();
+                product.Owner = await GetCurrentUserAsync();
+
+                string wwwRothPath = Environment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(ac.ImageFile.FileName);
+                string extens = Path.GetExtension(ac.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extens;
+
+                string path = Path.Combine(wwwRothPath + "/Image/", fileName);
+                using(var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await ac.ImageFile.CopyToAsync(fileStream);
+                }
+
+
+
+
+
+                //string uniqueFileName = UploadedFile(file);
+
                 product.Naziv = formCollection["Naziv"];
                 product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
                 product.Price = Double.Parse(formCollection["Price"]);
@@ -114,8 +138,7 @@ namespace SecondHand.Controllers
                 product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
                 product.AccessoriesChategory = (AccessoriesCategory)Enum.Parse(typeof(AccessoriesCategory), formCollection["AccessoriesChategory"], true);
                 product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
-                product.Owner = await GetCurrentUserAsync();
-                product.Image = "https://i.pinimg.com/originals/61/4f/94/614f94dd6b524408c618e23dbf049c6f.jpg";
+                product.Image = fileName;
                 //product.Image = uniqueFileName;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
@@ -127,23 +150,7 @@ namespace SecondHand.Controllers
             }
         }
 
-        private string UploadedFile(IFormFile model)
-        {
-            string uniqueFileName = "";
-
-
-            if (model != null)
-            {
-                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
+        
 
 
 
@@ -154,12 +161,24 @@ namespace SecondHand.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateShoes(IFormCollection formCollection)
+        public async Task<IActionResult> CreateShoes(IFormCollection formCollection, [Bind("ImageFile")] Shoes ac)
         {
             try
             {
 
                 Shoes product = new Shoes();
+
+                string wwwRothPath = Environment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(ac.ImageFile.FileName);
+                string extens = Path.GetExtension(ac.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extens;
+
+                string path = Path.Combine(wwwRothPath + "/Image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await ac.ImageFile.CopyToAsync(fileStream);
+                }
+
                 //product.ID = 1
                 product.Naziv = formCollection["Naziv"];
                 product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
@@ -172,7 +191,7 @@ namespace SecondHand.Controllers
                 product.ShoesCategory = (ShoesCategory)Enum.Parse(typeof(ShoesCategory), formCollection["ShoesCategory"], true);
                 product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
                 product.Owner = await GetCurrentUserAsync();
-                product.Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.perlica.eu%2Ftrgovina%2Fdijelovi-za-nakit%2Felementi-ss-304-medicinski-celik%2Fnausnice-od-medicinskog-celika%2Fnau%25C5%25A1nice-65x2-mm%2C-inox-ss304%2C-cr1-1-detail&psig=AOvVaw2cvdCaHIJvxxz5GB3ALt1T&ust=1622989218323000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJihsZDYgPECFQAAAAAdAAAAABAD";
+                product.Image = fileName;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
@@ -193,12 +212,24 @@ namespace SecondHand.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateClothing(IFormCollection formCollection)
+        public async Task<IActionResult> CreateClothing(IFormCollection formCollection, [Bind("ImageFile")] Clothing ac)
         {
             try
             {
                 Clothing product = new Clothing();
                 //product.ID = 1
+
+                string wwwRothPath = Environment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(ac.ImageFile.FileName);
+                string extens = Path.GetExtension(ac.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extens;
+
+                string path = Path.Combine(wwwRothPath + "/Image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await ac.ImageFile.CopyToAsync(fileStream);
+                }
+
                 product.Naziv = formCollection["Naziv"];
                 product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
                 product.Price = Double.Parse(formCollection["Price"]);
@@ -209,7 +240,7 @@ namespace SecondHand.Controllers
                 product.ClothingCategory = (ClothingChategory)Enum.Parse(typeof(ClothingChategory), formCollection["ClothingCategory"], true);
                 product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
                 product.Owner = await GetCurrentUserAsync();
-                product.Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.perlica.eu%2Ftrgovina%2Fdijelovi-za-nakit%2Felementi-ss-304-medicinski-celik%2Fnausnice-od-medicinskog-celika%2Fnau%25C5%25A1nice-65x2-mm%2C-inox-ss304%2C-cr1-1-detail&psig=AOvVaw2cvdCaHIJvxxz5GB3ALt1T&ust=1622989218323000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJihsZDYgPECFQAAAAAdAAAAABAD";
+                product.Image = fileName;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
@@ -270,7 +301,7 @@ namespace SecondHand.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
-        }
+        }*/
 
         // GET: Shop/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -279,9 +310,14 @@ namespace SecondHand.Controllers
             {
                 return NotFound();
             }
+            var Proizvodi = new List<Product>();
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.ID == id);
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
             if (product == null)
             {
                 return NotFound();
@@ -290,7 +326,7 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
-
+        /*
         // GET: Shop/Cart/Confirm address
         /*[HttpGet, ActionName("Address")]
         public async Task<IActionResult> ConfirmAddress()
@@ -300,20 +336,49 @@ namespace SecondHand.Controllers
         }*/
 
 
-        /*// POST: Shop/Delete/5
+        // POST: Shop/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi.Find(m => m.ID == id);
+            var path = Path.Combine(Environment.WebRootPath, "image", product.Image);
+
+            if (System.IO.File.Exists(path))
+                System.IO.File.Delete(path);
+
+            if(product is Accessories)
+                _context.Accessories.Remove((Accessories)product);
+            if (product is Shoes)
+                _context.Shoes.Remove((Shoes)product);
+            if (product is Clothing)
+                _context.Clothing.Remove((Clothing)product);
+
+            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool AccessorieExists(int id)
         {
-            return _context.Products.Any(e => e.ID == id);
-        }*/
+            return _context.Accessories.Any(e => e.ID == id);
+        }
+
+        private bool ShoeExists(int id)
+        {
+            return _context.Shoes.Any(e => e.ID == id);
+        }
+
+        private bool ClothingExists(int id)
+        {
+            return _context.Clothing.Any(e => e.ID == id);
+        }
     }
 }

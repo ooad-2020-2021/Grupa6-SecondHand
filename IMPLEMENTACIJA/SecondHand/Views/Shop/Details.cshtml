@@ -12,9 +12,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <div
-                <div class="card"><img class="card-img-top" src=@Html.DisplayFor(model => model.Image) alt="produc image" width=400 height=500 /></div>
-                </div>
+                <div class="card"><img class="card-img-top" src="@("~/image/"+Model.Image)" asp-append-version="true" alt="produc image" width=400 height=500 /></div>
+                
                 <div class="col-sm">
                     <div class="card-body">
 

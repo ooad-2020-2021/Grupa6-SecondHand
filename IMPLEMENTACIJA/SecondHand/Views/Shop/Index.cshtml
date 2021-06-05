@@ -20,7 +20,7 @@
                 <td>
                     <div class="w3-quarter">
                         <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i).ID)">
-                            <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i).Image) alt="Slika" width="400" height="500">
+                            <img src="@("~/image/"+Model.ElementAt<Product>(i).Image)" asp-append-version="true" alt="Slika" width="400" height="500">
                         </a>
                         <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Naziv)</h3>
                         <p>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Description)</p>
@@ -32,7 +32,7 @@
                     {
                         <div class="w3-quarter">
                             <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).ID)">
-                                <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).Image) alt="Slika" width="400" height="500">
+                                <img src="@("~/image/"+Model.ElementAt<Product>(i+1).Image)" asp-append-version="true" alt="Slika" width="400" height="500">
                             </a>
 
                             <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 1).Naziv) </h3>
@@ -46,7 +46,7 @@
                     {
                         <div class="w3-quarter">
                             <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).ID)">
-                                <img src=@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).Image) alt="Slika" width="400" height="500">
+                                <img src="@("~/image/"+Model.ElementAt<Product>(i+2).Image)" asp-append-version="true" alt="Slika" width="400" height="500">
                             </a>
                             <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 2).Naziv)</h3>
                             <p>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 2).Description)</p>

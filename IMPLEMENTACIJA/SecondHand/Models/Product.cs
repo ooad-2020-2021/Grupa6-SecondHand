@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,6 +57,10 @@ namespace SecondHand.Models
         [Required]
         [DisplayName("Owner:")]
         public IdentityUser Owner { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload file:")]
+        public IFormFile ImageFile { get; set; }
 
 
         #endregion

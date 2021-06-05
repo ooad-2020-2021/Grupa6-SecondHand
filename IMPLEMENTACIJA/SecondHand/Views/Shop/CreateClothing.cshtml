@@ -99,9 +99,14 @@
 
 <h1>CREATE A NEW CLOTHING ITEM</h1>
 <hr />
-<form asp-action="CreateClothing">
+<form asp-action="CreateClothing" enctype="multipart/form-data">
     <div class="column">
-
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label"><p1>Upload slike:</p1> </label>
+            <input asp-for="ImageFile" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
     </div>
     <div class="column">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
