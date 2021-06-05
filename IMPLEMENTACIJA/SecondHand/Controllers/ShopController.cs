@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +19,17 @@ namespace SecondHand.Controllers
 
         private readonly SecondHandContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
         /*public ShopController(SecondHandContext context)
         {
             _context = context;
         }*/
 
-        public ShopController(SecondHandContext context, UserManager<IdentityUser> userManager)
+
+        public ShopController(SecondHandContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment hostEnvironment)
         {
+            webHostEnvironment = hostEnvironment;
             _userManager = userManager;
             _context = context;
         }
@@ -98,8 +103,8 @@ namespace SecondHand.Controllers
         {
             try
             {
+                //string uniqueFileName = UploadedFile(file);
                 Accessories product = new Accessories();
-                //product.ID = 1;
                 product.Naziv = formCollection["Naziv"];
                 product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
                 product.Price = Double.Parse(formCollection["Price"]);
@@ -110,7 +115,8 @@ namespace SecondHand.Controllers
                 product.AccessoriesChategory = (AccessoriesCategory)Enum.Parse(typeof(AccessoriesCategory), formCollection["AccessoriesChategory"], true);
                 product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
                 product.Owner = await GetCurrentUserAsync();
-                product.Image = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.perlica.eu%2Ftrgovina%2Fdijelovi-za-nakit%2Felementi-ss-304-medicinski-celik%2Fnausnice-od-medicinskog-celika%2Fnau%25C5%25A1nice-65x2-mm%2C-inox-ss304%2C-cr1-1-detail&psig=AOvVaw2cvdCaHIJvxxz5GB3ALt1T&ust=1622989218323000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJihsZDYgPECFQAAAAAdAAAAABAD";
+                product.Image = "https://i.pinimg.com/originals/61/4f/94/614f94dd6b524408c618e23dbf049c6f.jpg";
+                //product.Image = uniqueFileName;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
@@ -120,6 +126,26 @@ namespace SecondHand.Controllers
                 return View();
             }
         }
+
+        private string UploadedFile(IFormFile model)
+        {
+            string uniqueFileName = "";
+
+
+            if (model != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
+
+
 
         public IActionResult CreateShoes()
         {
@@ -132,6 +158,7 @@ namespace SecondHand.Controllers
         {
             try
             {
+
                 Shoes product = new Shoes();
                 //product.ID = 1
                 product.Naziv = formCollection["Naziv"];
@@ -156,6 +183,8 @@ namespace SecondHand.Controllers
                 return View();
             }
         }
+
+       
 
         public IActionResult CreateClothing()
         {

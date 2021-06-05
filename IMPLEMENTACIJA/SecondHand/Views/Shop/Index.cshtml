@@ -42,7 +42,7 @@
                     }
                 </td>
                 <td>
-                    @if (i + 2 != Model.Count<Product>())
+                    @if (i + 2 != Model.Count<Product>() && i + 1 != Model.Count<Product>())
                     {
                         <div class="w3-quarter">
                             <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).ID)">

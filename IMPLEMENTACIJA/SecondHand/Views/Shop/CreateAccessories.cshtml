@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "CreateAccessories";
 }
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -101,7 +100,13 @@
 <hr />
 <form asp-action="CreateAccessories">
     <div class="column">
-        
+        <div class="column">
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"><p1>Slika:</p1></label>
+                <input type="file" width=300 height=300 asp-for="Image" accept=".jpg, .jpeg, .png" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+        </div>
     </div>
     <div class="column">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -123,7 +128,9 @@
         color: #000000;
         font-size: 10px;
         background-color: #A6DAF3;
-        border: 2px solid #000000;" asp-for="Color" class="form-control" asp-items="Html.GetEnumSelectList<Color>()">></select>
+        border: 2px solid #000000;" asp-for="Color" class="form-control" asp-items="Html.GetEnumSelectList<Color>()">
+                >
+            </select>
             <span asp-validation-for="Color" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -134,7 +141,9 @@
         color: #000000;
         font-size: 10px;
         background-color: #A6DAF3;
-        border: 2px solid #000000;" asp-for="Material" class="form-control" asp-items="Html.GetEnumSelectList<Material>()">></select>
+        border: 2px solid #000000;" asp-for="Material" class="form-control" asp-items="Html.GetEnumSelectList<Material>()">
+                >
+            </select>
             <span asp-validation-for="Material" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -145,7 +154,9 @@
         color: #000000;
         font-size: 10px;
         background-color: #A6DAF3;
-        border: 2px solid #000000;" asp-for="Condition" class="form-control" asp-items="Html.GetEnumSelectList<Condition>()">></select>
+        border: 2px solid #000000;" asp-for="Condition" class="form-control" asp-items="Html.GetEnumSelectList<Condition>()">
+                >
+            </select>
             <span asp-validation-for="Condition" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -196,7 +207,6 @@
         </div>
     </div>
 </form>
-
 
 
 @section Scripts {
