@@ -1,0 +1,219 @@
+﻿@model SecondHand.Models.Clothing
+
+@{
+    ViewData["Title"] = "CreateClothing";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 33%;
+            padding: 5px
+            /* Should be removed. Only for demonstration */
+        }
+
+        input[type=submit] {
+            float: right;
+            background-color: #33546D;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+        }
+
+        .select-selected {
+            box-sizing: border-box;
+            color: #000000;
+            max-width: 50%;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border: 2px solid #000000;
+        }
+
+        input[type=text] {
+            float: right;
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        input[type=number] {
+            float: right;
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        input[type=password] {
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        input[type=date] {
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        h1 {
+            color: #33546D;
+            font-size: 50px;
+            margin-left: 70px;
+            font-weight: bold;
+        }
+
+        p1 {
+            color: #000000;
+            font-size: 20px;
+            margin-left: 20px;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+
+<h1>CREATE A NEW CLOTHING ITEM</h1>
+<hr />
+<form asp-action="CreateClothing">
+    <div class="column">
+
+    </div>
+    <div class="column">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Naziv" class="control-label"><p1>Naziv:</p1> </label>
+            <input type="text" asp-for="Naziv" class="form-control" />
+            <span asp-validation-for="Naziv" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"><p1>Price:</p1></label>
+            <input type="number" min="0" asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Color" class="control-label"><p1>Color:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="Color" class="form-control" asp-items="Html.GetEnumSelectList<Color>()">
+                >
+            </select>
+            <span asp-validation-for="Color" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Material" class="control-label"><p1>Material:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="Material" class="form-control" asp-items="Html.GetEnumSelectList<Material>()">
+                >
+            </select>
+            <span asp-validation-for="Material" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Condition" class="control-label"><p1>Condition:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="Condition" class="form-control" asp-items="Html.GetEnumSelectList<Condition>()">
+                >
+            </select>
+            <span asp-validation-for="Condition" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Brand" class="control-label"><p1>Brand:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="Brand" class="form-control" asp-items="Html.GetEnumSelectList<Brand>()"></select>
+            <span asp-validation-for="Brand" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender" class="control-label"><p1>Gender:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="column">
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"><p1>Description:</p1></label>
+            <input type="text" asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div><br />
+        <div class="form-group">
+            <label asp-for="ClothingCategory" class="control-label"><p1>Category:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="ClothingCategory" class="form-control" asp-items="Html.GetEnumSelectList<ClothingChategory>()"></select>
+            <span asp-validation-for="ClothingCategory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClothingSize" class="control-label"><p1>Size:</p1></label>
+            <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;" asp-for="ClothingSize" class="form-control" asp-items="Html.GetEnumSelectList<ClothingSize>()"></select>
+            <span asp-validation-for="ClothingSize" class="text-danger"></span>
+        </div><br /><br />
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div><br /><br />
+        <div>
+            <a style="float: right;" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
