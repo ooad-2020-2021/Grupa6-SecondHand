@@ -12,9 +12,9 @@ namespace SecondHand.Models
 
 
         [Required]
-        [EnumDataType(typeof(AccessoriesChategory))]
+        [EnumDataType(typeof(AccessoriesCategory))]
         [DisplayName("Accessorie category:")]
-        public AccessoriesChategory AccessoriesChategory { get; set; }
+        public AccessoriesCategory AccessoriesChategory { get; set; }
 
         public Accessories()
         {

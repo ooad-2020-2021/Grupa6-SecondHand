@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecondHand.Models
 {
-    public enum AccessoriesChategory
+    public enum ClothingChategory
     {
         [Display(Name = "Hoddie")]
         Hoddie,
