@@ -97,6 +97,47 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+        public async Task<IActionResult> AddToCart(string idProizvoda)
+        {
+
+            int id = Int32.Parse(idProizvoda);
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var korisnik = await GetCurrentUserAsync();
+            var idKorisnika = korisnik.Id;
+
+            if (idKorisnika == null)
+            {
+                return NotFound();
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            Cart korpa = new Cart();
+            korpa.product = product;
+            korpa.user = korisnik;
+
+            _context.Cart.Add(korpa);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         /*
         // GET: Shop/Create
         public IActionResult Create()
@@ -152,13 +193,13 @@ namespace SecondHand.Controllers
 
             var korisnik = await GetCurrentUserAsync();
             var idKorisnika = korisnik.Id;
-            var povrat = new List<Product>();
+            var povrat = new List<Cart>();
 
             var korpaProizvodi = await _context.Cart.ToListAsync();
 
             foreach(var korpa in korpaProizvodi) {
                 if (korpa.user != null && korpa.user.Id == idKorisnika)
-                    povrat.Add(korpa.product);
+                    povrat.Add(korpa);
             }
 
             var Proizvodi = new List<Product>();
@@ -167,7 +208,16 @@ namespace SecondHand.Controllers
             Proizvodi.AddRange(await _context.Clothing.ToListAsync());
             Proizvodi.AddRange(await _context.Shoes.ToListAsync());
 
-            return View(povrat);
+            var povrat1 = new List<Product>();
+
+            if(povrat != null) { 
+                foreach (var k in povrat) {
+                    var product = Proizvodi
+                    .FirstOrDefault(m => m.ID == k.product.ID);
+                    povrat1.Add(product);
+                }
+            }
+            return View(povrat1);
         }
 
 
