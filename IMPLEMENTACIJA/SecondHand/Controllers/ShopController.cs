@@ -455,5 +455,36 @@ namespace SecondHand.Controllers
         {
             return _context.Clothing.Any(e => e.ID == id);
         }
+        public async Task<IActionResult> Pretraga()
+        {
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            return View(Proizvodi);
+        }
+        public async Task<IActionResult> PretragaAccessories()
+        {
+            
+            var Proizvod = new Accessories();
+
+            return View(Proizvod);
+        }
+        public async Task<IActionResult> PretragaClothing()
+        {
+
+            var Proizvod = new Clothing();
+
+            return View(Proizvod);
+        }
+        public async Task<IActionResult> PretragaShoes()
+        {
+
+            var Proizvod = new Shoes();
+
+            return View(Proizvod);
+        }
     }
 }
