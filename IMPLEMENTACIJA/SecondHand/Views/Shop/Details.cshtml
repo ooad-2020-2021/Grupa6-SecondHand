@@ -74,8 +74,10 @@
                             </dd>
                         </dl>
                     </div>
-                    <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Add to cart</button>
-
+                    @if (User.Identity.IsAuthenticated) 
+                    { 
+                        <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Add to cart</button>
+                    }
                     <a asp-action="Index">Back to List</a>
                 </div>
             </div>

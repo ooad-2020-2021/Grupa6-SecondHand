@@ -11,6 +11,7 @@ using System.Web;
 using Microsoft.EntityFrameworkCore;
 using SecondHand.Data;
 using SecondHand.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SecondHand.Controllers
 {
@@ -166,7 +167,7 @@ namespace SecondHand.Controllers
 
         // GET: Shop/Create
 
-
+        [Authorize]
         public async Task<IActionResult> UserProducts()
         {
 
@@ -188,6 +189,7 @@ namespace SecondHand.Controllers
             return View(povrat);
         }
 
+        [Authorize]
         public async Task<IActionResult> Cart()
         {
 
@@ -221,6 +223,7 @@ namespace SecondHand.Controllers
         }
 
 
+        [Authorize]
         public IActionResult CreateAccessories()
         {
             return View();
@@ -275,10 +278,10 @@ namespace SecondHand.Controllers
             }
         }
 
-        
 
 
 
+        [Authorize]
         public IActionResult CreateShoes()
         {
             return View();
@@ -328,8 +331,8 @@ namespace SecondHand.Controllers
             }
         }
 
-       
 
+        [Authorize]
         public IActionResult CreateClothing()
         {
             return View();
