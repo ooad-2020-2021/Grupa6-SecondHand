@@ -1,0 +1,153 @@
+﻿@model SecondHand.Models.Shoes
+
+    <head>
+        <style>
+            .container {
+                position: relative;
+            }
+
+            .center {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            input[type=number] {
+                float: right;
+                box-sizing: border-box;
+                color: #000000;
+                font-size: 10px;
+                background-color: #A6DAF3;
+                border-radius: 20px;
+                border: 2px solid #000000;
+                margin-bottom: 10px;
+            }
+
+            input[type=submit] {
+                float: right;
+                background-color: #33546D;
+                border: none;
+                border-radius: 20px;
+                color: white;
+                padding: 15px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 20px;
+            }
+
+            p1 {
+                color: #000000;
+                font-size: 20px;
+                margin-left: 20px;
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+
+<h4>Shoes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+        <form asp-action="PretragaShoes">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ShoesCategory" class="control-label"><p1>Category:</p1></label>
+                <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;
+        margin-bottom: 15px;" asp-for="ShoesCategory" class="form-control" asp-items="Html.GetEnumSelectList<ShoesCategory>()"></select>
+                <span asp-validation-for="ShoesCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeSize" class="control-label"><p1>Size:</p1></label>
+                <input type="number" min="33" max="46" asp-for="ShoeSize" class="form-control" />
+                <span asp-validation-for="ShoeSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"><p1>Color:</p1></label>
+                <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;
+        margin-bottom: 15px;" asp-for="Color" class="form-control" asp-items="Html.GetEnumSelectList<Color>()">
+                    >
+                </select>
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material" class="control-label"><p1>Material:</p1></label>
+                <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;
+        margin-bottom: 15px;" asp-for="Material" class="form-control" asp-items="Html.GetEnumSelectList<Material>()">
+                    >
+                </select>
+                <span asp-validation-for="Material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Condition" class="control-label"><p1>Condition:</p1></label>
+                <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;
+        margin-bottom: 15px;" asp-for="Condition" class="form-control" asp-items="Html.GetEnumSelectList<Condition>()">
+                    >
+                </select>
+                <span asp-validation-for="Condition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"><p1>Brand:</p1></label>
+                <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;
+        margin-bottom: 15px;" asp-for="Brand" class="form-control" asp-items="Html.GetEnumSelectList<Brand>()"></select>
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"><p1>Gender:</p1></label>
+                <select style="        box-sizing: border-box;
+        border-radius: 20px;
+        float: right;
+        color: #000000;
+        font-size: 10px;
+        background-color: #A6DAF3;
+        border: 2px solid #000000;
+        margin-bottom: 15px;" asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Pretraga">Back to Pretraga</a>
+</div>
+

@@ -1,0 +1,165 @@
+﻿
+
+@model IEnumerable<SecondHand.Models.Product>
+
+<p>
+    <a asp-action="Pretraga">Pretraga</a>
+</p>
+
+<head>
+    <style>
+        /* Container holding the image and the text */
+        .container2 {
+            height: 125px;
+            position: relative;
+            margin: 30px;
+        }
+
+        /* Bottom right text */
+        .text-block {
+            /*position: relative;
+            text-align: center;
+            background-color: #33546D;
+            opacity: 0.8;
+            color: white;
+            padding-left: 20px;
+            padding-right: 20px;*/
+            background-color: #4C728F;
+            padding-top: 50px;
+            padding-right: 80px;
+            padding-bottom: 50px;
+            padding-left: 80px;
+            text-align: center;
+            color: white;
+           
+        }
+
+        .img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #F1485B;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 250px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+            .button span {
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+            }
+
+                .button span:after {
+                    content: '\00bb';
+                    position: absolute;
+                    opacity: 0;
+                    top: 0;
+                    right: -20px;
+                    transition: 0.5s;
+                }
+
+            .button:hover span {
+                padding-right: 25px;
+            }
+
+                .button:hover span:after {
+                    opacity: 1;
+                    right: 0;
+                }
+        .p {
+            padding-top: 50px;
+            padding-right: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+        }
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .bg-shape {
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+            .bg-shape:after {
+                content: '';
+                position: absolute;
+                width: 200px;
+                height: 100%;
+                background: #F1485B;
+                border-radius: 0%;
+                top: 0;
+                right: 0;
+                z-index: -1;
+                top: 0%; /* change value as required */
+                left: 10%;
+                margin-left: 10px;
+                padding-right: 10px;
+                /*change value as required */
+            }
+    </style>
+</head>
+
+<div class="text-block">
+    <h2>What are you searching for ?</h2>
+</div>
+
+<div class="bg-shape">
+    
+    <div class="container2" style=" background-color: #4C728F">
+        <div class="center">
+            <a asp-action="PretragaClothing">
+                <button class="button" style="vertical-align:middle"><span>Clothes</span></button>
+            </a>
+            
+        </div>
+    </div>
+    
+    <div class="container2" style=" background-color: #4C728F">
+        <div class="center">
+            <a asp-action="PretragaShoes">
+                <button class="button" style="vertical-align:middle"><span>Shoes</span></button>
+            </a>
+        </div>
+    </div>
+    
+    <div class="container2" style=" background-color: #4C728F">
+        <div class="center">
+            <a asp-action="PretragaAccessories">
+                <button class="button" style="vertical-align:middle"><span>Accessories</span></button>
+            </a>
+            
+        </div>
+    </div>     
+    
+                
+       
+                
+    
+</div>
+
+
+
+
+
+
+
