@@ -45,7 +45,34 @@ namespace SecondHand.Controllers
 
             return View(Proizvodi);
         }
-        
+
+        public async Task<IActionResult> AccessriesView()
+        {
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+
+            return View(Proizvodi);
+        }
+
+        public async Task<IActionResult> ShoesView()
+        {
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            return View(Proizvodi);
+        }
+
+        public async Task<IActionResult> ClothingView()
+        {
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+
+            return View(Proizvodi);
+        }
+
         // GET: Shop/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -69,8 +96,6 @@ namespace SecondHand.Controllers
 
             return View(product);
         }
-
-        
 
         /*
         // GET: Shop/Create
