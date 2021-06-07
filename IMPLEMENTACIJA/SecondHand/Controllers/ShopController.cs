@@ -98,6 +98,29 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+        public async Task<IActionResult> DetailsUserProduct(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
         public async Task<IActionResult> AddToCart(string idProizvoda)
         {
 
@@ -222,6 +245,11 @@ namespace SecondHand.Controllers
             return View(povrat1);
         }
 
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
 
         [Authorize]
         public IActionResult CreateAccessories()
@@ -366,6 +394,7 @@ namespace SecondHand.Controllers
                 product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
                 product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
                 product.ClothingCategory = (ClothingChategory)Enum.Parse(typeof(ClothingChategory), formCollection["ClothingCategory"], true);
+                product.ClothingSize = (ClothingSize)Enum.Parse(typeof(ClothingSize), formCollection["ClothingSize"], true);
                 product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
                 product.Owner = await GetCurrentUserAsync();
                 product.Image = fileName;
@@ -379,6 +408,29 @@ namespace SecondHand.Controllers
                 return View();
             }
         }
+
+        
+        public async Task<IActionResult> Edit(string idProizvoda)
+        {
+            int id = Int32.Parse(idProizvoda);
+            Accessories productA = await _context.Accessories.FindAsync(id);
+            if (productA == null)
+            {
+                Shoes productS = await _context.Shoes.FindAsync(id);
+
+                if(productS == null)
+                {
+                    Clothing productC = await _context.Clothing.FindAsync(id);
+
+                    return RedirectToAction("EditClothing", new { id = productC.ID });
+                }
+
+                return RedirectToAction("EditShoes", new { id = productS.ID });
+            }
+
+            return RedirectToAction("EditAccessories", new { id = productA.ID });
+        }
+
 
         public async Task<IActionResult> EditAccessories(int? id)
         {
@@ -433,6 +485,7 @@ namespace SecondHand.Controllers
                     product.Image = fileName;
                     _context.Update(product);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -440,9 +493,145 @@ namespace SecondHand.Controllers
                     {
                         return NotFound();
                     }
-                
-                    return RedirectToAction(nameof(Index));
+                    
                 }
+            
+            return View(product);
+        }
+
+        public async Task<IActionResult> EditClothing(int? id)
+        {
+            if (id == null)
+            {
+
+                return NotFound();
+            }
+
+            var product = await _context.Clothing.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditClothing(int id, IFormCollection formCollection, [Bind("ID,ImageFile")] Clothing product)
+        {
+            if (id != product.ID)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                product.Owner = await GetCurrentUserAsync();
+
+                string wwwRothPath = Environment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                string extens = Path.GetExtension(product.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extens;
+
+                string path = Path.Combine(wwwRothPath + "/Image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await product.ImageFile.CopyToAsync(fileStream);
+                }
+
+                product.Naziv = formCollection["Naziv"];
+                product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
+                product.Price = Double.Parse(formCollection["Price"]);
+                product.Description = formCollection["Description"];
+                product.Brand = (Brand)Enum.Parse(typeof(Brand), formCollection["Brand"], true);
+                product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
+                product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
+                product.ClothingCategory = (ClothingChategory)Enum.Parse(typeof(ClothingChategory), formCollection["ClothingCategory"], true);
+                product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
+                product.ClothingSize = (ClothingSize)Enum.Parse(typeof(ClothingSize), formCollection["ClothingSize"], true);
+                product.Image = fileName;
+                _context.Update(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Accessories.Any(e => e.ID == id))
+                {
+                    return NotFound();
+                }
+
+            }
+
+            return View(product);
+        }
+
+        public async Task<IActionResult> EditShoes(int? id)
+        {
+            if (id == null)
+            {
+
+                return NotFound();
+            }
+
+            var product = await _context.Shoes.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditShoes(int id, IFormCollection formCollection, [Bind("ID,ImageFile")] Shoes product)
+        {
+            if (id != product.ID)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                product.Owner = await GetCurrentUserAsync();
+
+                string wwwRothPath = Environment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                string extens = Path.GetExtension(product.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extens;
+
+                string path = Path.Combine(wwwRothPath + "/Image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await product.ImageFile.CopyToAsync(fileStream);
+                }
+
+                product.Naziv = formCollection["Naziv"];
+                product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
+                product.Price = Double.Parse(formCollection["Price"]);
+                product.Description = formCollection["Description"];
+                product.Brand = (Brand)Enum.Parse(typeof(Brand), formCollection["Brand"], true);
+                product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
+                product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
+                product.ShoesCategory = (ShoesCategory)Enum.Parse(typeof(ShoesCategory), formCollection["ShoesCategory"], true);
+                product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
+                product.ShoeSize = int.Parse(formCollection["ShoeSize"]);
+                product.Image = fileName;
+                _context.Update(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Accessories.Any(e => e.ID == id))
+                {
+                    return NotFound();
+                }
+
+            }
+
             return View(product);
         }
 
@@ -606,5 +795,7 @@ namespace SecondHand.Controllers
 
             return View(Proizvod);
         }
+
+        
     }
 }

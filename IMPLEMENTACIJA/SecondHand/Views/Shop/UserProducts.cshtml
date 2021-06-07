@@ -18,7 +18,7 @@
             <tr>
                 <td>
                     <div class="w3-quarter">
-                        <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i).ID)">
+                        <a href="/Shop/DetailsUserProduct/@Html.DisplayFor(model => Model.ElementAt<Product>(i).ID)">
                             <img src="@("~/image/"+Model.ElementAt<Product>(i).Image)" asp-append-version="true" alt="Slika" width="400" height="500">
                         </a>
                         <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i).Naziv)</h3>
@@ -30,7 +30,7 @@
                     @if (i + 1 != Model.Count<Product>())
                     {
                         <div class="w3-quarter">
-                            <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).ID)">
+                            <a href="/Shop/DetailsUserProduct/@Html.DisplayFor(model => Model.ElementAt<Product>(i+1).ID)">
                                 <img src="@("~/image/"+Model.ElementAt<Product>(i+1).Image)" asp-append-version="true" alt="Slika" width="400" height="500">
                             </a>
 
@@ -44,7 +44,7 @@
                     @if (i + 2 != Model.Count<Product>() && i + 1 != Model.Count<Product>())
                     {
                         <div class="w3-quarter">
-                            <a href="/Shop/Details/@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).ID)">
+                            <a href="/Shop/DetailsUserProduct/@Html.DisplayFor(model => Model.ElementAt<Product>(i+2).ID)">
                                 <img src="@("~/image/"+Model.ElementAt<Product>(i+2).Image)" asp-append-version="true" alt="Slika" width="400" height="500">
                             </a>
                             <h3>@Html.DisplayFor(model => Model.ElementAt<Product>(i + 2).Naziv)</h3>
