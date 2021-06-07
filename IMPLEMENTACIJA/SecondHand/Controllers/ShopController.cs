@@ -380,6 +380,73 @@ namespace SecondHand.Controllers
             }
         }
 
+        public async Task<IActionResult> EditAccessories(int? id)
+        {
+            if (id == null)
+            {
+                
+                return NotFound();
+            }
+
+            var product = await _context.Accessories.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAccessories(int id, IFormCollection formCollection, [Bind("ID,ImageFile")] Accessories product)
+        {
+            if (id != product.ID)
+            {
+                return NotFound();
+            }
+
+            try
+                {
+                    product.Owner = await GetCurrentUserAsync();
+                     
+                    string wwwRothPath = Environment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                    string extens = Path.GetExtension(product.ImageFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extens;
+
+                    string path = Path.Combine(wwwRothPath + "/Image/", fileName);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await product.ImageFile.CopyToAsync(fileStream);
+                    }
+                    
+                    product.Naziv = formCollection["Naziv"];
+                    product.Material = (Material) Enum.Parse(typeof(Material), formCollection["Material"], true);
+                    product.Price = Double.Parse(formCollection["Price"]);
+                    product.Description = formCollection["Description"];
+                    product.Brand = (Brand) Enum.Parse(typeof(Brand), formCollection["Brand"], true);
+                    product.Gender = (Gender) Enum.Parse(typeof(Gender), formCollection["Gender"], true);
+                    product.Color = (Color) Enum.Parse(typeof(Color), formCollection["Color"], true);
+                    product.AccessoriesChategory = (AccessoriesCategory) Enum.Parse(typeof(AccessoriesCategory), formCollection["AccessoriesChategory"], true);
+                    product.Condition = (Condition) Enum.Parse(typeof(Condition), formCollection["Condition"], true);
+                    product.Image = fileName;
+                    _context.Update(product);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.Accessories.Any(e => e.ID == id))
+                    {
+                        return NotFound();
+                    }
+                
+                    return RedirectToAction(nameof(Index));
+                }
+            return View(product);
+        }
+
+
         /*// GET: Shop/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
