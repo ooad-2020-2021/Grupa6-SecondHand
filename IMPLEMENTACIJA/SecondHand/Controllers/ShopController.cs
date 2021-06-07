@@ -38,40 +38,105 @@ namespace SecondHand.Controllers
         // GET: Shop
         public async Task<IActionResult> Index()
         {
+            var korisnik = await GetCurrentUserAsync();
+            
             var Proizvodi = new List<Product>();
+            var povrat = new List<Product>();
 
             Proizvodi.AddRange(await _context.Accessories.ToListAsync());
             Proizvodi.AddRange(await _context.Clothing.ToListAsync());
             Proizvodi.AddRange(await _context.Shoes.ToListAsync());
 
-            return View(Proizvodi);
+            povrat.AddRange(Proizvodi);
+
+            if(korisnik != null)
+            {
+                var idKorisnika = korisnik.Id;
+                foreach (Product p in Proizvodi)
+                {
+                    if (p.Owner != null && p.Owner.Id == idKorisnika)
+                    povrat.Remove(p);
+                }
+            }
+            
+
+            return View(povrat);
         }
 
-        public async Task<IActionResult> AccessriesView()
+        public async Task<IActionResult> AccessoriesView()
         {
+            var korisnik = await GetCurrentUserAsync();
+
             var Proizvodi = new List<Product>();
+            var povrat = new List<Product>();
 
             Proizvodi.AddRange(await _context.Accessories.ToListAsync());
 
-            return View(Proizvodi);
+            povrat.AddRange(Proizvodi);
+
+            if (korisnik != null)
+            {
+                var idKorisnika = korisnik.Id;
+                foreach (Product p in Proizvodi)
+                {
+                    if (p.Owner != null && p.Owner.Id == idKorisnika)
+                        povrat.Remove(p);
+                }
+            }
+
+
+            return View(povrat);
         }
 
         public async Task<IActionResult> ShoesView()
         {
+            var korisnik = await GetCurrentUserAsync();
+
             var Proizvodi = new List<Product>();
+            var povrat = new List<Product>();
 
             Proizvodi.AddRange(await _context.Shoes.ToListAsync());
 
-            return View(Proizvodi);
+            povrat.AddRange(Proizvodi);
+
+            if (korisnik != null)
+            {
+                var idKorisnika = korisnik.Id;
+                foreach (Product p in Proizvodi)
+                {
+                    if (p.Owner != null && p.Owner.Id == idKorisnika)
+                        povrat.Remove(p);
+                }
+            }
+
+
+            return View(povrat);
         }
 
         public async Task<IActionResult> ClothingView()
         {
+            var korisnik = await GetCurrentUserAsync();
+
             var Proizvodi = new List<Product>();
+            var povrat = new List<Product>();
+
 
             Proizvodi.AddRange(await _context.Clothing.ToListAsync());
 
-            return View(Proizvodi);
+            povrat.AddRange(Proizvodi);
+
+            if (korisnik != null)
+            {
+                var idKorisnika = korisnik.Id;
+                foreach (Product p in Proizvodi)
+                {
+                    if (p.Owner != null && p.Owner.Id == idKorisnika)
+                        povrat.Remove(p);
+                }
+            }
+
+
+            return View(povrat);
         }
 
         // GET: Shop/Details/5
@@ -299,7 +364,7 @@ namespace SecondHand.Controllers
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserProducts));
             } catch
             {
                 return View();
@@ -351,7 +416,7 @@ namespace SecondHand.Controllers
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserProducts));
             }
             catch
             {
@@ -401,7 +466,7 @@ namespace SecondHand.Controllers
                 _context.Add(product);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserProducts));
             }
             catch
             {
@@ -485,7 +550,7 @@ namespace SecondHand.Controllers
                     product.Image = fileName;
                     _context.Update(product);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(UserProducts));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -553,7 +618,7 @@ namespace SecondHand.Controllers
                 product.Image = fileName;
                 _context.Update(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserProducts));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -621,7 +686,7 @@ namespace SecondHand.Controllers
                 product.Image = fileName;
                 _context.Update(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserProducts));
             }
             catch (DbUpdateConcurrencyException)
             {

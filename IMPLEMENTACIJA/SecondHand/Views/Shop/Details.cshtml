@@ -4,14 +4,25 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    h1 {
+        color: #33546D;
+        font-size: 50px;
+        margin-left: 70px;
+        font-weight: bold;
+    }
+</style>
+
+
+<h1>DETAILS</h1>
+<hr />
 
 <div>
     <h4>Product</h4>
     <hr />
 
-    @using (Html.BeginForm("AddToCart","Shop"))
-    { 
+    @using (Html.BeginForm("AddToCart", "Shop"))
+    {
         <div class="container">
             <div class="row">
                 <div class="col-sm">
@@ -74,8 +85,8 @@
                             </dd>
                         </dl>
                     </div>
-                    @if (User.Identity.IsAuthenticated) 
-                    { 
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Add to cart</button>
                     }
                     <a asp-action="Index">Back to List</a>
