@@ -8,8 +8,41 @@
     h1 {
         color: #33546D;
         font-size: 50px;
-        margin-left: 70px;
+        margin-left: 5px;
         font-weight: bold;
+    }
+
+
+    .button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #F1485B;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 15px;
+        padding: 5px;
+        width: 70px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .center {
+        display: inline-block;
+        margin: 0;
+        position: inherit;
+        top: inherit;
+        left: inherit;
+        <ms-transform: translate(-50%, -50%);
+        <transform: translate(-50%, -50%);
+    }
+
+    p1 {
+        color: #000000;
+        font-size: 25px;
+        margin-left: 5px;
+        margin-right: 10px;
     }
 </style>
 
@@ -17,24 +50,38 @@
 <h1>ADMINISTRATOR PAGE</h1>
 <hr />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
+
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <p> "@item.korisnik.Email"</p>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="w3-quarter">
+                        <p1> @item.korisnik.Email</p1>
+                        <br> </br>
+                        <div class="center">
+                            <a asp-action="Edit" asp-route-id="@item.Id">
+                                <button class="button" style="vertical-align:inherit"><span>Edit</span></button>
+                            </a>
+
+                        </div>
+                        <div class="center">
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <button class="button" style="vertical-align:inherit"><span>Details</span></button>
+                            </a>
+
+                        </div>
+                        <div class="center">
+                            <a asp-action="Delete" asp-route-id="@item.Id">
+                                <button class="button" style="vertical-align:inherit"><span>Delete</span></button>
+                            </a>
+
+                        </div>
+
+
+                       
+                    </div>
                 </td>
             </tr>
         }
