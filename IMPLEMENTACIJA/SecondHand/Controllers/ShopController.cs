@@ -47,6 +47,9 @@ namespace SecondHand.Controllers
             Proizvodi.AddRange(await _context.Clothing.ToListAsync());
             Proizvodi.AddRange(await _context.Shoes.ToListAsync());
 
+            var cart = new List<Cart>();
+            cart.AddRange(await _context.Cart.ToListAsync());
+
             povrat.AddRange(Proizvodi);
 
             if(korisnik != null)
@@ -55,8 +58,17 @@ namespace SecondHand.Controllers
                 foreach (Product p in Proizvodi)
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
-                    povrat.Remove(p);
+                        povrat.Remove(p);
+                    foreach(var c in cart)
+                    {
+                        if(c.product.ID == p.ID)
+                        {
+                            povrat.Remove(p);
+                        }
+                    }
                 }
+
+                
             }
             
 
@@ -74,6 +86,9 @@ namespace SecondHand.Controllers
 
             povrat.AddRange(Proizvodi);
 
+            var cart = new List<Cart>();
+            cart.AddRange(await _context.Cart.ToListAsync());
+
             if (korisnik != null)
             {
                 var idKorisnika = korisnik.Id;
@@ -81,6 +96,14 @@ namespace SecondHand.Controllers
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
+
+                    foreach (var c in cart)
+                    {
+                        if (c.product.ID == p.ID)
+                        {
+                            povrat.Remove(p);
+                        }
+                    }
                 }
             }
 
@@ -99,6 +122,9 @@ namespace SecondHand.Controllers
 
             povrat.AddRange(Proizvodi);
 
+            var cart = new List<Cart>();
+            cart.AddRange(await _context.Cart.ToListAsync());
+
             if (korisnik != null)
             {
                 var idKorisnika = korisnik.Id;
@@ -106,6 +132,13 @@ namespace SecondHand.Controllers
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
+                    foreach (var c in cart)
+                    {
+                        if (c.product.ID == p.ID)
+                        {
+                            povrat.Remove(p);
+                        }
+                    }
                 }
             }
 
@@ -122,7 +155,8 @@ namespace SecondHand.Controllers
 
 
             Proizvodi.AddRange(await _context.Clothing.ToListAsync());
-
+            var cart = new List<Cart>();
+            cart.AddRange(await _context.Cart.ToListAsync());
             povrat.AddRange(Proizvodi);
 
             if (korisnik != null)
@@ -132,7 +166,15 @@ namespace SecondHand.Controllers
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
+                    foreach (var c in cart)
+                    {
+                        if (c.product.ID == p.ID)
+                        {
+                            povrat.Remove(p);
+                        }
+                    }
                 }
+
             }
 
 
@@ -224,7 +266,7 @@ namespace SecondHand.Controllers
             _context.Cart.Add(korpa);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Cart));
         }
 
         /*
@@ -755,10 +797,12 @@ namespace SecondHand.Controllers
         // GET: Shop/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
             }
+
             var Proizvodi = new List<Product>();
 
             Proizvodi.AddRange(await _context.Accessories.ToListAsync());
@@ -786,9 +830,9 @@ namespace SecondHand.Controllers
 
 
         // POST: Shop/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var Proizvodi = new List<Product>();
 
@@ -809,10 +853,9 @@ namespace SecondHand.Controllers
             if (product is Clothing)
                 _context.Clothing.Remove((Clothing)product);
 
-            
-
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction(nameof(UserProducts));
         }
 
         private bool AccessorieExists(int id)
