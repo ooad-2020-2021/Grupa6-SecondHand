@@ -39,6 +39,7 @@ namespace SecondHand
 
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SecondHandContext>();
 
             services.AddControllersWithViews();
