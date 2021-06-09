@@ -205,6 +205,29 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+        public async Task<IActionResult> ItemBuy(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
         public async Task<IActionResult> DetailsUserProduct(int? id)
         {
             if (id == null)
