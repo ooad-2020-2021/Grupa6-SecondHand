@@ -1,0 +1,180 @@
+﻿@model SecondHand.Models.Buy
+
+@{
+    ViewData["Title"] = "Buy";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 40%;
+            margin-right: 20px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        input[type=submit] {
+            padding: 3px;
+            float: right;
+            background-color: #33546D;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+        }
+
+        .select-selected {
+            margin-left: 50px;
+            box-sizing: border-box;
+            color: #000000;
+            max-width: 50%;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border: 2px solid #000000;
+        }
+
+        input[type=text] {
+            margin-right: 0px;
+            float: right;
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        input[type=number] {
+            float: right;
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        input[type=password] {
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        input[type=date] {
+            box-sizing: border-box;
+            color: #000000;
+            font-size: 10px;
+            background-color: #A6DAF3;
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
+
+        h1 {
+            color: #33546D;
+            font-size: 50px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        p1 {
+            color: #000000;
+            font-size: 20px;
+            margin-left: 20px;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+
+
+<h1>BUY PAGE</h1>
+<hr />
+<form asp-action="Buy" enctype="multipart/form-data">
+    <div class="column">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    </div>
+    <div class="column">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Ime" class="control-label"><p1>Ime:</p1> </label>
+            <input type="text" asp-for="Ime" class="form-control" />
+            <span asp-validation-for="Ime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Prezime" class="control-label"><p1>Prezime:</p1></label>
+            <input type="text" asp-for="Prezime" class="form-control" />
+            <span asp-validation-for="Prezime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"><p1>Email:</p1></label>
+            <input type="text" asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefon" class="control-label"><p1>Telefon:</p1></label>
+            <input type="number" asp-for="Telefon" class="form-control" />
+            <span asp-validation-for="Telefon" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adresa" class="control-label"><p1>Adresa:</p1></label>
+            <input type="text" asp-for="Adresa" class="form-control" />
+            <span asp-validation-for="Adresa" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Grad" class="control-label"><p1>Grad:</p1></label>
+            <input type="text" asp-for="Grad" class="form-control" />
+            <span asp-validation-for="Grad" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sifra" class="control-label"><p1>Sifra:</p1></label>
+            <input type="text" asp-for="Sifra" class="form-control" />
+            <span asp-validation-for="Sifra" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BrojKartice" class="control-label"><p1>Broj kartice:</p1></label>
+            <input type="text" asp-for="BrojKartice" class="form-control" />
+            <span asp-validation-for="BrojKartice" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="ValidThru" class="control-label"><p1>Valid thru:</p1></label>
+            <input type="text" asp-for="ValidThru" class="form-control" />
+            <span asp-validation-for="ValidThru" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CVV" class="control-label"><p1>CVV/CVC:</p1></label>
+            <input type="text" asp-for="CVV" class="form-control" />
+            <span asp-validation-for="CVV" class="text-danger"></span>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            <input type="submit" value="Next" class="btn btn-primary" />
+        </div><br /><br />
+        <div>
+            <a style="float: right;" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

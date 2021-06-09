@@ -927,6 +927,11 @@ namespace SecondHand.Controllers
             return View(Proizvod);
         }
 
-        
+        public async Task<IActionResult> Buy()
+        {
+            return View();
+        }
+
+
     }
 }
