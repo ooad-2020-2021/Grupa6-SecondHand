@@ -30,5 +30,10 @@ namespace SecondHand.Models
         public Transactions()
         {
         }
+
+        public static implicit operator List<object>(Transactions v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

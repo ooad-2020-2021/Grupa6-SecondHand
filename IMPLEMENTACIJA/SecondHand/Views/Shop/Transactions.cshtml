@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SecondHand.Models.Transactions>
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-left: 70px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #A6DAF3;
+        }
+
+        h1 {
+            color: #33546D;
+            font-size: 50px;
+            margin-left: 70px;
+            font-weight: bold;
+        }
+
+        p1 {
+            color: #A6DAF3;
+            font-size: 20px;
+            margin-left: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<h1>TRANSANCTION HISTORY</h1>
+<body>
+
+    <br />
+    <table>
+        <tr>
+            <th>Owner</th>
+            <th>Buyer</th>
+            <th>Product</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <th>@item.Seler</th>
+            <th>@item.Buyer</th>
+            <th>@item.Product</th>
+        }
+
+    </table>
+
+</body>

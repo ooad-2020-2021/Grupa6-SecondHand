@@ -932,6 +932,24 @@ namespace SecondHand.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Transactions()
+        {
+            var TrenutniKorisnik = await GetCurrentUserAsync();
+            var Transakcije = new List<Transactions>();
+            var povrat = new List<Transactions>();
+            Transakcije.AddRange(await _context.Transactions.ToListAsync());
+            povrat.AddRange(await _context.Transactions.ToListAsync());
+            foreach (var t in Transakcije)
+            {
+                if(t.Buyer.Id==TrenutniKorisnik.Id || t.Seler.Id == TrenutniKorisnik.Id)
+                {
+                    povrat.Add(t);
+                    
+                }
+            }
+            return View(povrat);
+        }
+
 
     }
 }
