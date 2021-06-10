@@ -37,7 +37,7 @@
         }
     </style>
 </head>
-<h1>TRANSANCTION HISTORY</h1>
+<h1>TRANSACTION HISTORY</h1>
 <body>
 
     <br />
@@ -47,11 +47,13 @@
             <th>Buyer</th>
             <th>Product</th>
         </tr>
-        @foreach (var item in Model)
-        {
-            <th>@item.Seler</th>
-            <th>@item.Buyer</th>
-            <th>@item.Product</th>
+        
+            @foreach (var item in Model)
+        {<tr>
+                <th>@item.Seler.Email</th>
+                <th>@item.Buyer.Email</th>
+                <th>@item.Product.ID</th>
+            </tr>
         }
 
     </table>

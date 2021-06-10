@@ -205,28 +205,7 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
-        public async Task<IActionResult> ItemBuy(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var Proizvodi = new List<Product>();
-
-            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
-            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
-            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
-
-            var product = Proizvodi
-                .FirstOrDefault(m => m.ID == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
+        
 
         public async Task<IActionResult> DetailsUserProduct(int? id)
         {
@@ -842,16 +821,6 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
-        /*
-        // GET: Shop/Cart/Confirm address
-        /*[HttpGet, ActionName("Address")]
-        public async Task<IActionResult> ConfirmAddress()
-        {
-            var user1 = await _context.User.FirstAsync<User>();
-            return View(user1);
-        }*/
-
-
         // POST: Shop/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -927,9 +896,73 @@ namespace SecondHand.Controllers
             return View(Proizvod);
         }
 
-        public async Task<IActionResult> Buy()
+        public async Task<IActionResult> ItemBuy(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        public async Task<IActionResult> Buy(string idProizvoda)
+        { 
+
+            int id = Int32.Parse(idProizvoda);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+        public async Task<IActionResult> AddToTransactions(string idProizvoda)
+        {
+            int id = Int32.Parse(idProizvoda);
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+
+                Transactions transactions = new Transactions();
+                transactions.Product = product;
+                transactions.Buyer = await GetCurrentUserAsync();
+                transactions.Seler = product.Owner;
+
+                _context.Add(transactions);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Transactions));
         }
 
         public async Task<IActionResult> Transactions()
@@ -944,7 +977,6 @@ namespace SecondHand.Controllers
                 if(t.Buyer.Id==TrenutniKorisnik.Id || t.Seler.Id == TrenutniKorisnik.Id)
                 {
                     povrat.Add(t);
-                    
                 }
             }
             return View(povrat);

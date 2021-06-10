@@ -1,4 +1,4 @@
-﻿@model SecondHand.Models.Buy
+﻿@model SecondHand.Models.Product
 
 @{
     ViewData["Title"] = "Buy";
@@ -101,78 +101,59 @@
 
 <h1>BUY PAGE</h1>
 <hr />
-<form asp-action="Buy" enctype="multipart/form-data">
+@using (Html.BeginForm("AddToTransactions", "Shop"))
+{
     <div class="column">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+        <div class="form-group">
+            <label><p1>Ime:</p1> </label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label><p1>Prezime:</p1></label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label><p1>Email:</p1></label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label><p1>Telefon:</p1></label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label><p1>Adresa:</p1></label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label><p1>Grad:</p1></label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label><p1>Sifra:</p1></label>
+            <input type="password" class="form-control" />
+        </div>
     </div>
     <div class="column">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Ime" class="control-label"><p1>Ime:</p1> </label>
-            <input type="text" asp-for="Ime" class="form-control" />
-            <span asp-validation-for="Ime" class="text-danger"></span>
+            <label><p1>Broj kartice:</p1></label>
+            <input type="text" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="Prezime" class="control-label"><p1>Prezime:</p1></label>
-            <input type="text" asp-for="Prezime" class="form-control" />
-            <span asp-validation-for="Prezime" class="text-danger"></span>
+            <label><p1>Valid thru:</p1></label>
+            <input type="number" min="2021" max="2100" step="1" value="2021" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="Email" class="control-label"><p1>Email:</p1></label>
-            <input type="text" asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Telefon" class="control-label"><p1>Telefon:</p1></label>
-            <input type="text" asp-for="Telefon" class="form-control" />
-            <span asp-validation-for="Telefon" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Adresa" class="control-label"><p1>Adresa:</p1></label>
-            <input type="text" asp-for="Adresa" class="form-control" />
-            <span asp-validation-for="Adresa" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Grad" class="control-label"><p1>Grad:</p1></label>
-            <input type="text" asp-for="Grad" class="form-control" />
-            <span asp-validation-for="Grad" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Sifra" class="control-label"><p1>Sifra:</p1></label>
-            <input type="password" asp-for="Sifra" class="form-control" />
-            <span asp-validation-for="Sifra" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="BrojKartice" class="control-label"><p1>Broj kartice:</p1></label>
-            <input type="number" asp-for="BrojKartice" class="form-control" />
-            <span asp-validation-for="BrojKartice" class="text-danger"></span>
-        </div>
-
-
-        <div class="form-group">
-            <label asp-for="ValidThru" class="control-label"><p1>Valid thru:</p1></label>
-            <input type="number" min ="2021" max ="2100" step="1" asp-for="ValidThru" class="form-control" />
-            <span asp-validation-for="ValidThru" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="CVV" class="control-label"><p1>CVV/CVC:</p1></label>
-            <input type="number" min="100" max="999" step="1" asp-for="CVV" class="form-control" />
-            <span asp-validation-for="CVV" class="text-danger"></span>
+            <label><p1>CVV/CVC:</p1></label>
+            <input type="number" min="100" max="999" step="1" value="100" class="form-control" />
         </div>
         <br /><br />
-        <div class="form-group">
-            <input type="submit" value="Next" class="btn btn-primary" />
-        </div><br /><br />
+        
+            <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Buy</button>
+        <br /><br />
         <div>
-            <a style="float: right;" asp-action="Index">Back to List</a>
+            <a href="/Shop/Cart">Back to List</a>
         </div>
     </div>
-</form>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
 
