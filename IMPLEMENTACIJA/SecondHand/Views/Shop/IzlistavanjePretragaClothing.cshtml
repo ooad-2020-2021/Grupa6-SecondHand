@@ -1,8 +1,10 @@
-﻿@model IEnumerable<SecondHand.Models.Product>
+﻿
+@model IEnumerable<SecondHand.Models.Product>
 
 @{
-    ViewData["Title"] = "Accessories";
+    ViewData["Title"] = "Shop";
 }
+
 
 <style>
     h1 {
@@ -14,9 +16,8 @@
 </style>
 
 
-<h1>ACCESSORIES</h1>
+<h1>SHOP</h1>
 <hr />
-
 <!--
 <p>
     <a asp-action="Create">Create New</a>
@@ -24,7 +25,7 @@
 -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/Shop/AccessoriesView">Accessories</a>
+    <a class="navbar-brand" href="/Shop/Pretraga">Filter</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -32,13 +33,13 @@
                 <a class="nav-link" href="/Shop">All</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/Shop/AccessoriesView">Accessories</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/Shop/ShoesView">Shoes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Shop/ClothingView">Clothing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Shop/Pretraga">Filter</a>
             </li>
         </ul>
     </div>
@@ -91,4 +92,3 @@
         }
     </tbody>
 </table>
-

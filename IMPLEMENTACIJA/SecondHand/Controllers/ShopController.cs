@@ -21,6 +21,9 @@ namespace SecondHand.Controllers
         private readonly SecondHandContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private IWebHostEnvironment Environment;
+        private static Clothing PretragaClothingInstanca;
+        private static Accessories PretragaAccessoriesInstanca;
+        private static Shoes PretragaShoesInstanca;
 
         /*public ShopController(SecondHandContext context)
         {
@@ -881,6 +884,30 @@ namespace SecondHand.Controllers
 
             return View(Proizvod);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PretragaAccessories(IFormCollection formCollection)
+        {
+
+            var Proizvod = new Accessories();
+
+            var product = new Accessories();
+
+
+            product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
+            product.Brand = (Brand)Enum.Parse(typeof(Brand), formCollection["Brand"], true);
+            product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
+            product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
+            product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
+            product.AccessoriesChategory = (AccessoriesCategory)Enum.Parse(typeof(AccessoriesCategory), formCollection["AccessoriesChategory"], true);
+            
+
+            PretragaAccessoriesInstanca = product;
+
+            return RedirectToAction(nameof(IzlistavanjePretragaAccessories));
+        }
+
         public async Task<IActionResult> PretragaClothing()
         {
 
@@ -888,12 +915,130 @@ namespace SecondHand.Controllers
 
             return View(Proizvod);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PretragaClothing(IFormCollection formCollection)
+        {
+
+            var Proizvod = new Clothing();
+
+            var product = new Clothing();
+
+     
+            product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
+            product.Brand = (Brand)Enum.Parse(typeof(Brand), formCollection["Brand"], true);
+            product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
+            product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
+            product.ClothingCategory = (ClothingChategory)Enum.Parse(typeof(ClothingChategory), formCollection["ClothingCategory"], true);
+            product.ClothingSize = (ClothingSize)Enum.Parse(typeof(ClothingSize), formCollection["ClothingSize"], true);
+            product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
+
+            PretragaClothingInstanca = product;
+
+            return RedirectToAction(nameof(IzlistavanjePretragaClothing));
+        }
         public async Task<IActionResult> PretragaShoes()
         {
 
             var Proizvod = new Shoes();
 
             return View(Proizvod);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PretragaShoes(IFormCollection formCollection)
+        {
+
+            var Proizvod = new Shoes();
+
+            var product = new Shoes();
+
+
+            product.Material = (Material)Enum.Parse(typeof(Material), formCollection["Material"], true);
+            product.Brand = (Brand)Enum.Parse(typeof(Brand), formCollection["Brand"], true);
+            product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
+            product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
+            product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
+            product.ShoeSize = int.Parse(formCollection["ShoeSize"]);
+            product.ShoesCategory = (ShoesCategory)Enum.Parse(typeof(ShoesCategory), formCollection["ShoesCategory"], true);
+
+            PretragaShoesInstanca = product;
+
+            return RedirectToAction(nameof(IzlistavanjePretragaShoes));
+        }
+
+        public async Task<IActionResult> IzlistavanjePretragaClothing()
+        {
+            var Proizvodi = new List<Clothing>();
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+
+            var povrat = new List<Clothing>();
+            povrat.AddRange(Proizvodi);
+
+            foreach (Clothing p in Proizvodi)
+            {
+                if (p.Brand != PretragaClothingInstanca.Brand ||
+                    p.Color != PretragaClothingInstanca.Color ||
+                    p.Condition != PretragaClothingInstanca.Condition ||
+                    p.Gender != PretragaClothingInstanca.Gender ||
+                    p.Material != PretragaClothingInstanca.Material) {
+
+                    povrat.Remove(p);
+                } 
+            }
+
+            return View(povrat);
+        }
+
+        public async Task<IActionResult> IzlistavanjePretragaShoes()
+        {
+            var Proizvodi = new List<Shoes>();
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var povrat = new List<Shoes>();
+            povrat.AddRange(Proizvodi);
+
+            foreach (Shoes p in Proizvodi)
+            {
+                if (p.Brand != PretragaShoesInstanca.Brand ||
+                    p.Color != PretragaShoesInstanca.Color ||
+                    p.Condition != PretragaShoesInstanca.Condition ||
+                    p.Gender != PretragaShoesInstanca.Gender ||
+                    p.Material != PretragaShoesInstanca.Material)
+                    
+                {
+
+                    povrat.Remove(p);
+                }
+            }
+
+            return View(povrat);
+        }
+
+        public async Task<IActionResult> IzlistavanjePretragaAccessories()
+        {
+            var Proizvodi = new List<Accessories>();
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+
+            var povrat = new List<Accessories>();
+            povrat.AddRange(Proizvodi);
+
+            foreach (Accessories p in Proizvodi)
+            {
+                if (p.Brand != PretragaAccessoriesInstanca.Brand ||
+                    p.Color != PretragaAccessoriesInstanca.Color ||
+                    p.Condition != PretragaAccessoriesInstanca.Condition ||
+                    p.Gender != PretragaAccessoriesInstanca.Gender ||
+                    p.Material != PretragaAccessoriesInstanca.Material)
+
+                {
+
+                    povrat.Remove(p);
+                }
+            }
+
+            return View(povrat);
         }
 
         public async Task<IActionResult> ItemBuy(int? id)
