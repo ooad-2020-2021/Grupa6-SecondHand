@@ -249,6 +249,7 @@ namespace SecondHand.Controllers
             return RedirectToAction(nameof(Cart));
         }
 
+
         [Authorize]
         public async Task<IActionResult> UserProducts()
         {
@@ -306,7 +307,7 @@ namespace SecondHand.Controllers
             return View(povrat1);
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -320,6 +321,7 @@ namespace SecondHand.Controllers
 
         private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAccessories (IFormCollection formCollection, [Bind("ImageFile")] Accessories ac)
@@ -376,6 +378,7 @@ namespace SecondHand.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateShoes(IFormCollection formCollection, [Bind("ImageFile")] Shoes ac)
@@ -427,6 +430,7 @@ namespace SecondHand.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateClothing(IFormCollection formCollection, [Bind("ImageFile")] Clothing ac)
@@ -470,7 +474,8 @@ namespace SecondHand.Controllers
             }
         }
 
-        
+
+        [Authorize]
         public async Task<IActionResult> Edit(string idProizvoda)
         {
             int id = Int32.Parse(idProizvoda);
@@ -493,6 +498,7 @@ namespace SecondHand.Controllers
         }
 
 
+        [Authorize]
         public async Task<IActionResult> EditAccessories(int? id)
         {
             if (id == null)
@@ -560,6 +566,7 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+        [Authorize]
         public async Task<IActionResult> EditClothing(int? id)
         {
             if (id == null)
@@ -628,6 +635,8 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+
+        [Authorize]
         public async Task<IActionResult> EditShoes(int? id)
         {
             if (id == null)
@@ -749,6 +758,7 @@ namespace SecondHand.Controllers
         }*/
 
         // GET: Shop/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             
@@ -986,6 +996,7 @@ namespace SecondHand.Controllers
             return View(povrat);
         }
 
+        [Authorize]
         public async Task<IActionResult> ItemBuy(int? id)
         {
             if (id == null)
@@ -1008,6 +1019,7 @@ namespace SecondHand.Controllers
             return View(product);
         }
 
+        [Authorize]
         public async Task<IActionResult> Buy(string idProizvoda)
         { 
             int id = Int32.Parse(idProizvoda);

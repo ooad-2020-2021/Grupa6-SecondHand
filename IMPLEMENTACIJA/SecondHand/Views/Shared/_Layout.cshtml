@@ -23,7 +23,7 @@
                         </li>
                         @if (User.IsInRole("Administrator")) {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="/AUser/Index">AdminPage</a>
+                                <a class="nav-link text-dark" href="/AUsers">AdminPage</a>
                             </li>
                         }
                         @if (User.Identity.IsAuthenticated && !User.IsInRole("Administrator"))

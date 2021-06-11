@@ -83,7 +83,7 @@
                             </dd>
                         </dl>
                     </div>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Administrator"))
                     {
                         <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Add to cart</button>
                     }

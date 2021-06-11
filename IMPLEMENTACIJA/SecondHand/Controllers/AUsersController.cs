@@ -31,6 +31,7 @@ namespace SecondHand.Controllers
         }
 
         // GET: AUsers
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             
@@ -38,6 +39,7 @@ namespace SecondHand.Controllers
         }
 
         // GET: AUsers/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
 
