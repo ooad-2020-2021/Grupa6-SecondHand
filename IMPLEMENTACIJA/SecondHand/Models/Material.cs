@@ -15,6 +15,12 @@ namespace SecondHand.Models
         [Display(Name = "Linen")]
         Linen,
         [Display(Name = "Silk")]
-        Silk
+        Silk,
+        [Display(Name = "Gold")]
+        Gold,
+        [Display(Name = "Silver")]
+        Silver,
+        [Display(Name = "Leather")]
+        Lether
     }
 }
