@@ -21,6 +21,8 @@ namespace SecondHand.Models
         [Display(Name = "Glasses")]
         Glasses,
         [Display(Name = "Belt")]
-        Belt
+        Belt,
+        [Display(Name = "Watch")]
+        Watch
     }
 }

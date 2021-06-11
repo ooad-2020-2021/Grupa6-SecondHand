@@ -849,7 +849,7 @@ namespace SecondHand.Controllers
             product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
             product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
             product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
-            product.AccessoriesChategory = (AccessoriesCategory)Enum.Parse(typeof(AccessoriesCategory), formCollection["AccessoriesChategory"], true);
+         
             
 
             PretragaAccessoriesInstanca = product;
@@ -879,8 +879,6 @@ namespace SecondHand.Controllers
             product.Brand = (Brand)Enum.Parse(typeof(Brand), formCollection["Brand"], true);
             product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
             product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
-            product.ClothingCategory = (ClothingChategory)Enum.Parse(typeof(ClothingChategory), formCollection["ClothingCategory"], true);
-            product.ClothingSize = (ClothingSize)Enum.Parse(typeof(ClothingSize), formCollection["ClothingSize"], true);
             product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
 
             PretragaClothingInstanca = product;
@@ -909,8 +907,6 @@ namespace SecondHand.Controllers
             product.Gender = (Gender)Enum.Parse(typeof(Gender), formCollection["Gender"], true);
             product.Color = (Color)Enum.Parse(typeof(Color), formCollection["Color"], true);
             product.Condition = (Condition)Enum.Parse(typeof(Condition), formCollection["Condition"], true);
-            product.ShoeSize = int.Parse(formCollection["ShoeSize"]);
-            product.ShoesCategory = (ShoesCategory)Enum.Parse(typeof(ShoesCategory), formCollection["ShoesCategory"], true);
 
             PretragaShoesInstanca = product;
 

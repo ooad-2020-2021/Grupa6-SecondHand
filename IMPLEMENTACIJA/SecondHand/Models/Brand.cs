@@ -17,6 +17,11 @@ namespace SecondHand.Models
         [Display(Name = "Zara")]
         Zara,
         [Display(Name = "Stradivarius")]
-        Stradivarius
+        Stradivarius,
+        [Display(Name = "Gucci")]
+        Gucci,
+        [Display(Name = "Rolex")]
+        Rolex
+
     }
 }

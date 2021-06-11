@@ -90,23 +90,6 @@
         <form asp-action="PretragaShoes">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ShoesCategory" class="control-label"><p1>Category:</p1></label>
-                <select style="        box-sizing: border-box;
-        border-radius: 20px;
-        float: right;
-        color: #000000;
-        font-size: 10px;
-        background-color: #A6DAF3;
-        border: 2px solid #000000;
-        margin-bottom: 15px;" asp-for="ShoesCategory" class="form-control" asp-items="Html.GetEnumSelectList<ShoesCategory>()"></select>
-                <span asp-validation-for="ShoesCategory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShoeSize" class="control-label"><p1>Size:</p1></label>
-                <input type="number" min="33" max="46" asp-for="ShoeSize" class="form-control" />
-                <span asp-validation-for="ShoeSize" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Color" class="control-label"><p1>Color:</p1></label>
                 <select style="        box-sizing: border-box;
         border-radius: 20px;
