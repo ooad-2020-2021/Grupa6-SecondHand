@@ -21,6 +21,9 @@ namespace SecondHand.Models
         [Display(Name = "Silver")]
         Silver,
         [Display(Name = "Leather")]
-        Lether
+        Lether,
+        [Display(Name = "Fur")]
+        Fur
+
     }
 }

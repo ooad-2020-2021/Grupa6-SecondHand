@@ -21,6 +21,9 @@ namespace SecondHand.Models
         [Display(Name = "Black")]
         Black,
         [Display(Name = "Purple")]
-        Purple
+        Purple,
+        [Display(Name = "Brown")]
+        Brown
+
     }
 }

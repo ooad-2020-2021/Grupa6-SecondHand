@@ -21,7 +21,9 @@ namespace SecondHand.Models
         [Display(Name = "Gucci")]
         Gucci,
         [Display(Name = "Rolex")]
-        Rolex
+        Rolex,
+        [Display(Name = "Unknown")]
+        Unknown
 
     }
 }

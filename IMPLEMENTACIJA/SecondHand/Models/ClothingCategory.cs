@@ -23,6 +23,8 @@ namespace SecondHand.Models
         [Display(Name = "Skirt")]
         Skirt,
         [Display(Name = "Shorts")]
-        Shorts
+        Shorts,
+        [Display(Name = "Trousers")]
+        Trousers
     }
 }
