@@ -21,11 +21,11 @@ namespace SecondHand.Models
         [Required]
         [DisplayName("Buyer Id:")]
         public IdentityUser Buyer { get; set; }
-
+        /*
         [Required]
         [DisplayName("Seler Id:")]
         public IdentityUser Seler { get; set; }
-
+        */
 
         public Transactions()
         {

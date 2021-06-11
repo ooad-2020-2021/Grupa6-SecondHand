@@ -62,13 +62,7 @@ namespace SecondHand.Controllers
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
-                    foreach(var c in cart)
-                    {
-                        if(c.product.ID == p.ID)
-                        {
-                            povrat.Remove(p);
-                        }
-                    }
+                    
                 }
 
                 
@@ -100,13 +94,6 @@ namespace SecondHand.Controllers
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
 
-                    foreach (var c in cart)
-                    {
-                        if (c.product.ID == p.ID)
-                        {
-                            povrat.Remove(p);
-                        }
-                    }
                 }
             }
 
@@ -135,13 +122,7 @@ namespace SecondHand.Controllers
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
-                    foreach (var c in cart)
-                    {
-                        if (c.product.ID == p.ID)
-                        {
-                            povrat.Remove(p);
-                        }
-                    }
+                    
                 }
             }
 
@@ -169,13 +150,7 @@ namespace SecondHand.Controllers
                 {
                     if (p.Owner != null && p.Owner.Id == idKorisnika)
                         povrat.Remove(p);
-                    foreach (var c in cart)
-                    {
-                        if (c.product.ID == p.ID)
-                        {
-                            povrat.Remove(p);
-                        }
-                    }
+                    
                 }
 
             }
@@ -274,34 +249,6 @@ namespace SecondHand.Controllers
             return RedirectToAction(nameof(Cart));
         }
 
-        /*
-        // GET: Shop/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Shop/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Naziv,Description,Image,Price,Color,Material,Condition,Brand,Gender")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            else {
-                return NotFound();
-            }
-            return View(product);
-        }*/
-
-        // GET: Shop/Create
-
         [Authorize]
         public async Task<IActionResult> UserProducts()
         {
@@ -320,6 +267,8 @@ namespace SecondHand.Controllers
                 if (p.Owner != null && p.Owner.Id == idKorisnika)
                     povrat.Add(p);
             }
+
+            int i = 0;
 
             return View(povrat);
         }
@@ -1065,7 +1014,6 @@ namespace SecondHand.Controllers
 
         public async Task<IActionResult> Buy(string idProizvoda)
         { 
-
             int id = Int32.Parse(idProizvoda);
             if (id == null)
             {
@@ -1087,10 +1035,11 @@ namespace SecondHand.Controllers
 
             return View(product);
         }
+
+        [Authorize]
         public async Task<IActionResult> AddToTransactions(string idProizvoda)
         {
             int id = Int32.Parse(idProizvoda);
-
             var Proizvodi = new List<Product>();
 
             Proizvodi.AddRange(await _context.Accessories.ToListAsync());
@@ -1099,34 +1048,36 @@ namespace SecondHand.Controllers
 
             var product = Proizvodi
                 .FirstOrDefault(m => m.ID == id);
+            if (product == null) return NotFound();
 
                 Transactions transactions = new Transactions();
                 transactions.Product = product;
                 transactions.Buyer = await GetCurrentUserAsync();
-                transactions.Seler = product.Owner;
+            //transactions.Seler = product.Owner;
+
+            Cart Cart = null;
+
+            foreach(var c in await _context.Cart.ToListAsync())
+            {
+                if(c.product != null && c.product.ID == id)
+                {
+                    Cart = c;
+                }
+            }
+
+            /*
+            Cart.product = product;
+            Cart.user = await GetCurrentUserAsync();
+            */
+            if(Cart != null)
+                _context.Remove(Cart);
+
+
+            int i = 0;
 
                 _context.Add(transactions);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Transactions));
+                return RedirectToAction(nameof(Cart));
         }
-
-        public async Task<IActionResult> Transactions()
-        {
-            var TrenutniKorisnik = await GetCurrentUserAsync();
-            var Transakcije = new List<Transactions>();
-            var povrat = new List<Transactions>();
-            Transakcije.AddRange(await _context.Transactions.ToListAsync());
-            povrat.AddRange(await _context.Transactions.ToListAsync());
-            foreach (var t in Transakcije)
-            {
-                if(t.Buyer.Id==TrenutniKorisnik.Id || t.Seler.Id == TrenutniKorisnik.Id)
-                {
-                    povrat.Add(t);
-                }
-            }
-            return View(povrat);
-        }
-
-
     }
 }

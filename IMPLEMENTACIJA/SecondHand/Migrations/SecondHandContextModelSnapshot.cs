@@ -213,6 +213,47 @@ namespace SecondHand.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SecondHand.Models.Buy", b =>
+                {
+                    b.Property<string>("Ime")
+                        .HasColumnType("varchar(767)");
+
+                    b.Property<string>("Adresa")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("BrojKartice")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Grad")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Prezime")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sifra")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telefon")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ValidThru")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Ime");
+
+                    b.ToTable("Buy");
+                });
+
             modelBuilder.Entity("SecondHand.Models.Cart", b =>
                 {
                     b.Property<int>("Id")
@@ -325,17 +366,11 @@ namespace SecondHand.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SelerId")
-                        .IsRequired()
-                        .HasColumnType("varchar(767)");
-
                     b.HasKey("id");
 
                     b.HasIndex("BuyerId");
 
                     b.HasIndex("ProductID");
-
-                    b.HasIndex("SelerId");
 
                     b.ToTable("Transactions");
                 });
@@ -473,12 +508,6 @@ namespace SecondHand.Migrations
                     b.HasOne("SecondHand.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Seler")
-                        .WithMany()
-                        .HasForeignKey("SelerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

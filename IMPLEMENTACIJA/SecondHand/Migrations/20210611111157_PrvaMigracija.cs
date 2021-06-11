@@ -48,6 +48,26 @@ namespace SecondHand.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Buy",
+                columns: table => new
+                {
+                    Ime = table.Column<string>(nullable: false),
+                    Prezime = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Telefon = table.Column<string>(nullable: true),
+                    Adresa = table.Column<string>(nullable: false),
+                    Grad = table.Column<string>(nullable: true),
+                    Sifra = table.Column<string>(nullable: false),
+                    BrojKartice = table.Column<string>(nullable: false),
+                    ValidThru = table.Column<string>(nullable: false),
+                    CVV = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Buy", x => x.Ime);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -247,8 +267,7 @@ namespace SecondHand.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     ProductID = table.Column<int>(nullable: false),
-                    BuyerId = table.Column<string>(nullable: false),
-                    SelerId = table.Column<string>(nullable: false)
+                    BuyerId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -264,12 +283,6 @@ namespace SecondHand.Migrations
                         column: x => x.ProductID,
                         principalTable: "Product",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Transactions_AspNetUsers_SelerId",
-                        column: x => x.SelerId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -344,11 +357,6 @@ namespace SecondHand.Migrations
                 name: "IX_Transactions_ProductID",
                 table: "Transactions",
                 column: "ProductID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transactions_SelerId",
-                table: "Transactions",
-                column: "SelerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -367,6 +375,9 @@ namespace SecondHand.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Buy");
 
             migrationBuilder.DropTable(
                 name: "Cart");

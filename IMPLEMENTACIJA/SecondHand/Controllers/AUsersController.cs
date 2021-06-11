@@ -185,13 +185,13 @@ namespace SecondHand.Controllers
                     _context.Cart.Remove(c);
                 }
             }
-            foreach (var c in listaTransactions)
+            /*foreach (var c in listaTransactions)
             {
                 if (c.Seler.Id == idKorisnika || c.Buyer.Id == idKorisnika)
                 {
                     _context.Transactions.Remove(c);
                 }
-            }
+            }*/
             foreach (var c in listaProducts)
             {
                 if (c.Owner.Id == idKorisnika)
