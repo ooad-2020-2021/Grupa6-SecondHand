@@ -1,6 +1,9 @@
 **Tema**  
 Online second hand/trift store pod nazivom 2nd TIME
 
+**Urađen je deployment aplikacije i stranici možete pristupiti preko slijedećeg linku**
+Web stranica](http://secondtime-001-site1.etempurl.com/)
+
 **Prototip aplikacije može se testirati na slijedećem linku**  
 [Prototip aplikacije](https://www.figma.com/proto/Y9IytwUbLM2Z7h9k7dtWh0/2ND-TIME?node-id=19%3A64&scaling=contain&page-id=0%3A1)
 
