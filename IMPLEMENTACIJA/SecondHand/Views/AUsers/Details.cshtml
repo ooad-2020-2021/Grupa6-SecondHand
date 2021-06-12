@@ -4,15 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<style>
+    h1 {
+        color: #33546D;
+        font-size: 50px;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
+
+    .button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #F1485B;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 15px;
+        padding: 5px;
+        width: 70px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .center {
+        display: inline-block;
+        margin: 0;
+        position: inherit;
+        top: inherit;
+        left: inherit;
+        <ms-transform: translate(-50%, -50%);
+        <transform: translate(-50%, -50%);
+    }
+
+    p1 {
+        color: #000000;
+        font-size: 25px;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+</style>
+
+<h1>DETAILS</h1>
+<hr /> 
 
 <div>
-    <h4>AUser</h4>
-    <hr />
-    <dl class="row">
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <p1>@Model.korisnik.Email</p1>
     <a asp-action="Index">Back to List</a>
 </div>

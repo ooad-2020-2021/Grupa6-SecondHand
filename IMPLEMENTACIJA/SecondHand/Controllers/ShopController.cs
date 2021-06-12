@@ -249,6 +249,58 @@ namespace SecondHand.Controllers
             return RedirectToAction(nameof(Cart));
         }
 
+        public async Task<IActionResult> Remove(string idProizvoda)
+        {
+
+            int id = Int32.Parse(idProizvoda);
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var korisnik = await GetCurrentUserAsync();
+            var idKorisnika = korisnik.Id;
+
+            if (idKorisnika == null)
+            {
+                return NotFound();
+            }
+
+            var Proizvodi = new List<Product>();
+
+            Proizvodi.AddRange(await _context.Accessories.ToListAsync());
+            Proizvodi.AddRange(await _context.Clothing.ToListAsync());
+            Proizvodi.AddRange(await _context.Shoes.ToListAsync());
+
+            var product = Proizvodi
+                .FirstOrDefault(m => m.ID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            Cart Cart = null;
+
+            foreach (var c in await _context.Cart.ToListAsync())
+            {
+                if (c.product != null && c.product.ID == id)
+                {
+                    Cart = c;
+                }
+            }
+
+            /*
+            Cart.product = product;
+            Cart.user = await GetCurrentUserAsync();
+            */
+            if (Cart != null)
+                _context.Remove(Cart);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Cart));
+        }
+
 
         [Authorize]
         public async Task<IActionResult> UserProducts()

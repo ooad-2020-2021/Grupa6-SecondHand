@@ -8,7 +8,7 @@
     h1 {
         color: #33546D;
         font-size: 50px;
-        margin-left: 5px;
+        margin:20px;
         font-weight: bold;
     }
 
@@ -44,11 +44,23 @@
         margin-left: 5px;
         margin-right: 10px;
     }
+
+    p2 {
+        font-size: 30px;
+        margin: 20px;
+        color: #33546D;
+        font-weight: bold;
+    }
 </style>
 
 
 <h1>ADMINISTRATOR PAGE</h1>
 <hr />
+
+   
+    <p2>Trenutno registrovanih korisnika: @Model.Count()</p2>
+
+<hr/>
 
 <table class="table">
 
@@ -67,15 +79,6 @@
                             </a>
 
                         </div>
-                        <div class="center">
-                            <a asp-action="Delete" asp-route-id="@item.Id">
-                                <button class="button" style="vertical-align:inherit"><span>Delete</span></button>
-                            </a>
-
-                        </div>
-
-
-                       
                     </div>
                 </td>
             </tr>

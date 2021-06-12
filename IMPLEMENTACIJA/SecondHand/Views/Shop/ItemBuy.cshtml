@@ -19,8 +19,7 @@
 
 <div>
 
-    @using (Html.BeginForm("Buy", "Shop"))
-    {
+    
         <div class="container">
             <div class="row">
                 <div class="col-sm">
@@ -85,13 +84,22 @@
                     </div>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Buy</button>
+                        @using (Html.BeginForm("Buy", "Shop"))
+                        {
+                            <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Buy</button>
+                        }
+                        <br />
+
+                        @using (Html.BeginForm("Remove", "Shop"))
+                        {
+                            <button type="submit" name="idProizvoda" value=@Html.DisplayFor(model => model.ID) class="btn btn-dark">Remove</button>
+                        }
                     }
                     <a href="/Shop/Cart">Back to List</a>
                 </div>
             </div>
         </div>
-    }
+    
 </div>
 <div>
     <!--<a asp-action="Edit" asp-route-id="@Model.ID">Edit</!--a> -->
