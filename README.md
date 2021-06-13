@@ -1,6 +1,9 @@
 **Tema**  
 Online second hand/trift store pod nazivom 2nd TIME
 
+**Video prezentaciji naše stranice možete pristupiti preko slijedećeg linka**  
+[Video prezentacija](https://www.youtube.com/watch?v=ExQVLnSznyo)
+
 **Završen je deployment aplikacije i stranici možete pristupiti preko slijedećeg linku**  
 [Web stranica](http://secondtime-001-site1.etempurl.com/)
 
